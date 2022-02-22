@@ -1,0 +1,14 @@
+/.env
+/artisan
+/composer.json
+/package.json
+/package-lock.json
+/README.md
+/webpack.mix.js
+/vendor/
+.idea
+.idea/
+/public/uploads/
+/node_modules/
+/node_modules/*
+

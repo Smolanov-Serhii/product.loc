@@ -236,46 +236,31 @@ return [
         ],
         ['header' => 'СТАТЬИ'],
         [
-            'text'        => 'Блог',
+            'text'        => 'Мокапы',
 //            'url'         => 'admin/modules',
             'icon'        => '/img/admin/blog.svg',
 //            'label'       => 3,
             'label_color' => 'success',
             'submenu' => [
                 [
-                    'text' => 'Записи блога ',
-                    'url'  => '/admin/modules/items/list/9',
+                    'text' => 'Список мокапов ',
+                    'url'  => '/admin/modules/items/list/21',
                 ],
                 [
-                    'text' => 'Рубрики',
-                    'url'  => '/admin/taxonomy/items/list/6',
-                ],
-            ]
-        ],
-        ['header' => 'ОБУЧЕНИЕ'],
-
-        [
-            'text'        => 'Информация',
-//            'url'         => 'admin/modules',
-            'icon'        => '/img/admin/info.svg',
-//            'label'       => 3,
-            'label_color' => 'success',
-            'submenu' => [
-                [
-                    'text' => 'Сведения',
-                    'url'  => '/admin/modules/items/list/10',
+                    'text' => 'Brand',
+                    'url'  => '/admin/taxonomy/items/list/1',
                 ],
                 [
-                    'text' => 'Рубрики сведений',
-                    'url'  => '/admin/taxonomy/items/list/9',
+                    'text' => 'Model',
+                    'url'  => '/admin/taxonomy/items/list/2',
                 ],
                 [
-                    'text' => 'Документы',
-                    'url'  => '/admin/modules/items/list/11',
+                    'text' => 'Orientation',
+                    'url'  => '/admin/taxonomy/items/list/3',
                 ],
                 [
-                    'text' => 'Рубрики документов',
-                    'url'  => '/admin/taxonomy/items/list/8',
+                    'text' => 'Hand',
+                    'url'  => '/admin/taxonomy/items/list/4',
                 ],
             ]
         ],
@@ -359,13 +344,13 @@ return [
             'label_color' => 'success',
         ],
         ['header' => 'ПАРАМЕТРЫ'],
-//        [
-//            'text'        => 'languages',
-//            'url'         => 'admin/languages',
-//            'icon'        => 'fas fa-language',
-////            'label'       => 3,
-//            'label_color' => 'success',
-//        ],
+        [
+            'text'        => 'languages',
+            'url'         => 'admin/languages',
+            'icon'        => 'fas fa-language',
+//            'label'       => 3,
+            'label_color' => 'success',
+        ],
         [
             'text'        => 'Настройки',
             'url'         => 'admin/variables',

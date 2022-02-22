@@ -113,12 +113,15 @@
         width: 100%;
     }
 }
-.form-group.field-image{
+.form-group.field-image, .form-group .input-group{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     align-items: center;
     label{
+        width: 100%;
+    }
+    .note-editor{
         width: 100%;
     }
     img{
@@ -192,11 +195,10 @@
     //}
 }
 .brand-link{
-    //padding-bottom: 0!important;
     .brand-image{
         opacity: 1!important;
         max-height: none!important;
-        width: 100% !important;
+        width: calc(100% - 2rem) !important;
         margin-left: 1rem!important;
         margin-right: 1rem!important;
         &.elevation-3{

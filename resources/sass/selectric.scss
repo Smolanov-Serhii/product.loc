@@ -3,12 +3,12 @@ $selectric-secondary-color: #BBB !default;                                      
 $selectric-text-color:      #B7B7C6 !default;                                              // Color used in label
 $selectric-bg-color:        #FFFFFF !default;                                           // Background color
 $selectric-btn-bg-color:    transparent !default;                                           // Button background color
-$selectric-height:          50px !default;                                              // Outer height
+$selectric-height:          54px !default;                                              // Outer height
 $selectric-spacing:         10px !default;                                              // Label left padding
 $selectric-border-width:    0px !default;                                               // Outer border width
-$selectric-border-radius:   0px !default;                                               // Border radius
+$selectric-border-radius:   10px !default;                                               // Border radius
 $selectric-inner-height:    $selectric-height - ($selectric-border-width * 2) !default; // Inner height
-$selectric-font-size:       16px !default;                                              // Font size
+$selectric-font-size:       1.8rem !default;                                              // Font size
 
 .selectric-wrapper {
   position: relative;
@@ -26,20 +26,29 @@ $selectric-font-size:       16px !default;                                      
   background: $selectric-bg-color;
   position: relative;
   overflow: hidden;
-
+    min-width: 300px;
+    background: #141D2B;
+    @media all and (max-width: 500px) {
+        min-width: auto;
+    }
   .label {
-    display: block;
+    display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      width: 100%;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    margin: 0 $selectric-inner-height 0 $selectric-spacing;
-    font-size: $selectric-font-size;
-    line-height: $selectric-inner-height;
-    color: $selectric-text-color;
+    padding: 14px 50px 14px 32px;
+      font-size: 1.2rem;
+      line-height: 120%;
+      letter-spacing: 0.075em;
+      text-transform: uppercase;
+      color: #FFFFFF;
     height: $selectric-inner-height;
     user-select: none;
     @media all and (max-width: 500px) {
-      font-size: 12px;
+      font-size: 18px;
     }
   }
 
@@ -51,8 +60,9 @@ $selectric-font-size:       16px !default;                                      
     width: $selectric-inner-height;
     height: $selectric-inner-height;
     line-height: $selectric-inner-height;
-    background-color: $selectric-btn-bg-color;
-    color: $selectric-secondary-color;
+    background-color: transparent;
+      background: transparent;
+    color: white;
     text-align: center;
     font: 0/0 a;
     *font: 20px/#{$selectric-inner-height} Lucida Sans Unicode, Arial Unicode MS, Arial;
@@ -60,16 +70,17 @@ $selectric-font-size:       16px !default;                                      
     &:after {
       content: " ";
       position: absolute;
-      top: 0;
+      top: -7px;
       right: 0;
       bottom: 0;
       left: 0;
       margin: auto;
-      border-right: 1px solid #bbb;
-      border-bottom: 1px solid #bbb;
-      width: 6px;
-      height: 6px;
+      border-right: 2px solid white;
+      border-bottom: 2px solid white;
+      width: 12px;
+      height: 12px;
       transform: rotate(45deg);
+        background: transparent;
     }
   }
 }
@@ -80,12 +91,12 @@ $selectric-font-size:       16px !default;                                      
 
 .selectric-hover .selectric {
   border-color: darken($selectric-main-color, 10%);
-
   .button {
     color: darken($selectric-secondary-color, 10%);
 
     &:after {
       border-top-color: darken($selectric-secondary-color, 10%);
+        width: 12px;
     }
   }
 }
@@ -95,10 +106,12 @@ $selectric-font-size:       16px !default;                                      
 
   .selectric {
     border-color: darken($selectric-main-color, 10%);
+      border-radius: 10px 10px 0 0;
   }
 
   .selectric-items {
     display: block;
+      border-radius: 0 0 10px 10px;
   }
 }
 
@@ -188,9 +201,10 @@ $selectric-font-size:       16px !default;                                      
     list-style: none;
     padding: 0;
     margin: 0;
-    font-size: $selectric-font-size;
     line-height: 20px;
     min-height: 20px;
+    font-size: 1.8rem;
+
   }
 
   li {
@@ -199,7 +213,7 @@ $selectric-font-size:       16px !default;                                      
     color: #666;
     cursor: pointer;
     @media all and (max-width: 500px) {
-      font-size: 12px;
+        font-size: 18px;
     }
 
     &.selected {

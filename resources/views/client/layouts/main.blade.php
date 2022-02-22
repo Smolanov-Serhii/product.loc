@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 @include('client.layouts.head')
-<body class="page-{{ $model->alias }}" id="top">
+<body class="page-{{ $model->alias }}">
 <div class="preloader">
     <div class="preloader__row">
         <div class="preloader__item"></div>
@@ -44,6 +44,5 @@
 @yield('client_scripts')
 
 {{--end footer section--}}
-
 </body>
 </html>

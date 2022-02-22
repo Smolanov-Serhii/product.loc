@@ -255,13 +255,12 @@
   transform: scale(0.33);
 }
 .swiper-pagination-bullet {
-  width: 10px;
-  height: 10px;
+  width: 8px;
+  height: 8px;
   display: inline-block;
   border-radius: 100%;
-  background: #FFFFFF;
-  opacity: 0.3;
-  margin: 0 8px;
+  background: #000;
+  opacity: 0.2;
 }
 button.swiper-pagination-bullet {
   border: none;
@@ -277,7 +276,7 @@ button.swiper-pagination-bullet {
 }
 .swiper-pagination-bullet-active {
   opacity: 1;
-  background: #FFFFFF;
+  background: var(--swiper-pagination-color, var(--swiper-theme-color));
 }
 .swiper-container-vertical > .swiper-pagination-bullets {
   right: 10px;

@@ -1,10 +1,12 @@
 @import "_swiper-bundle.scss";
 @import "_normalize.scss";
 @import "_default.scss";
+@import "_variables.scss";
 @import "aos.scss";
 
 $main-bg: #283780;
 $main-gray: #F5F5F5;
+$transition: 0.3s;
 
 *{
   box-sizing: border-box;
@@ -38,39 +40,288 @@ body{
 }
 .section-title{
   font-weight: 700;
-  font-size: 3.6rem;
-  line-height:124%;
-  margin-bottom: 0;
+  font-size: 48vw * $px;
+  line-height: 56vw * $px;
+  color: #2E3A87;
+  max-width: 960vw * $px;
+  margin: 0 auto 14vw * $px auto;
+  text-align: center;
+}
+.section-subtitle, .section-subtitle p{
+  max-width: 960vw * $px;
+  margin: 0 auto 14vw * $px auto;
+  color: #232639;
+  font-weight: 400;
+  font-size: 18vw * $px;
+  line-height: 151.4%;
+  text-align: center;
 }
 .button{
   display: inline-block;
   background: linear-gradient(88.72deg, #6E2AFF 1.13%, #50ABFF 234.23%);
   border-radius: 10px;
-  padding: 2rem 5rem;
+  padding: 2vw * $px 5vw * $px;
   font-weight: 500;
-  font-size: 1.6rem;
+  font-size: 16vw * $px;
   line-height: 101.4%;
   text-transform: uppercase;
   color: #FFFFFF;
 }
-
+.button-blue{
+  background: #2E3A87;
+  border-radius: 50vw * $px;
+  padding: 17vw * $px 30vw * $px;
+  min-width: 320vw * $px;
+  display: inline-flex;
+  justify-content: center;
+  align-content: center;
+  cursor: pointer;
+  span{
+    z-index: 1;
+    font-weight: 600;
+    font-size: 16vw * $px;
+    line-height: 118%;
+    color: #ffffff;
+    transition: $transition;
+  }
+}
+.button-stroke{
+  background: radial-gradient(90.03% 186.4% at 91.5% 97.89%, #00FFDB 0%, #00BBFF 100%);
+  box-shadow: 0px 4px 18px rgba(0, 224, 255, 0);
+  border-radius: 49px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 15vw * $px 55vw * $px;
+  position: relative;
+  transition: $transition;
+  cursor: pointer;
+  &:before{
+    position: absolute;
+    width: calc(100% - 4px);
+    height: calc(100% - 4px);
+    left: 2px;
+    top: 2px;
+    content: "";
+    display: block;
+    background-color: white;
+    border-radius: 49vw * $px;
+    opacity: 1;
+    transition: $transition;
+  }
+  span{
+    z-index: 1;
+    font-weight: 600;
+    font-size: 16vw * $px;
+    line-height: 118%;
+    color: #2E3A87;
+    transition: $transition;
+  }
+  &:hover{
+    box-shadow: 0px 4px 18px rgba(0, 224, 255, 0.33);
+    &:before{
+      opacity: 0;
+    }
+    span{
+      color: white;
+    }
+  }
+}
+body{
+  background-color: white;
+}
 .main-container{
-  max-width: 1300px;
+  max-width: 1920px;
   margin: auto;
-  @media all and (max-width: 1500px) {
-    max-width: 1500px;
-    padding: 0 100px;
+  padding-right: 50px;
+  padding-left: 50px;
+}
+.header{
+  padding-top: 3.6rem;
+  padding-bottom: 4.2rem;
+  &__container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
-  @media all and (max-width: 1300px) {
-    padding: 0 75px;
+  &__logo{
+    margin-right: 6.7rem;
   }
-  @media all and (max-width: 1024px) {
-    padding: 0 50px;
+  &__menu{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    flex: 1;
   }
-  @media all and (max-width: 768px) {
-    padding: 0 30px;
+  &__search{
+    position: relative;
+    max-width: 56rem;
+    width: 100%;
+    form{
+      button{
+        background-color: transparent;
+        border: none;
+        width: 24px;
+        height: 24px;
+        position: absolute;
+        top: calc(50% - 12px);
+        right: 13px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0;
+      }
+      input{
+        width: 100%;
+        border: 1px solid #C2C6DC;
+        box-sizing: border-box;
+        border-radius: 40px;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 1.4rem;
+        line-height: 114%;
+        color: black;
+        padding: 1.7rem 5rem 1.7rem 2rem;
+        &::placeholder{
+          color: #C2C6DC;
+        }
+      }
+    }
   }
-  @media all and (max-width: 420px) {
-    padding: 0 20px;
+  &__nav{
+    margin: 0 1.5rem;
+    &-list{
+      display: flex;
+      align-items: center;
+      margin-bottom: 0;
+    }
+    &-item{
+      margin-left: 5.2rem;
+      margin-bottom: 0;
+      padding-left: 0;
+    }
+    &-lnk{
+      font-weight: 500;
+      font-size: 1.6rem;
+      line-height: 118%;
+      color: #232639;
+      white-space: nowrap;
+    }
+  }
+  &__try{
+    margin-left: 5.2rem;
+    span{
+      white-space: nowrap;
+    }
+  }
+}
+.banner{
+  padding-bottom: 50vw * $px;
+  &__container{
+    position: relative;
+  }
+  &__bg{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    img{
+      width: 100%;
+      height: auto;
+    }
+  }
+  &__ring{
+    position: absolute;
+    top: -15vw * $px;
+    right: 261vw * $px;
+    width: 812vw * $px;
+    height: 812vw * $px;
+  }
+  &__note{
+    position: absolute;
+    top: 37vw * $px;
+    right: -50vw * $px;
+    width: 1038vw * $px;
+    pointer-events: none;
+  }
+  &__content{
+    padding-top: 142vw * $px;
+    position: relative;
+    max-width: 47.395833vw;
+    padding-left: 210vw * $px;
+  }
+  &__title{
+    font-weight: 700;
+    font-size: 60vw * $px;
+    line-height: 70vw * $px;
+    color: #FFFFFF;
+    margin-bottom: 30vw * $px;
+  }
+  &__subtitle{
+    font-weight: 400;
+    font-size: 18vw * $px;
+    line-height: 151.4%;
+    color: #2E3A87;
+    max-width: 549vw * $px;
+    margin-bottom: 50vw * $px;
+  }
+  &__design{
+    margin-top: -32vw * $px;
+    margin-left: -145vw * $px;
+    pointer-events: none;
+    width: 305vw * $px;
+    height: auto;
+    &-note{
+      position: absolute;
+      top: 119vw * $px;
+      right: 110vw * $px;
+    }
+  }
+  &__button{
+    cursor: pointer;
+    position: relative;
+    svg{
+      height: 20vw * $px;
+      width: auto;
+      position: absolute;
+      top: 17vw * $px;
+      left: 24vw * $px;
+    }
+  }
+  &__brands{
+    display: flex;
+    align-items: center;
+    margin-top: 144vw * $px;
+    position: relative;
+    padding-left: 104vw * $px;
+    max-width: 1050vw * $px;
+    &-item{
+      margin-right: 66vw * $px;
+    }
+  }
+}
+.list{
+  padding-top: 100vw * $px;
+  &__subtitle{
+    p{
+      margin: 0;
+    }
+  }
+  &__content{
+    margin-top: 38vw * $px;
+    &-title{
+      padding: 0 23vw * $px;
+      font-weight: 400;
+      font-size: 16vw * $px;
+      line-height: 151.4%;
+      color: #232639;
+    }
+    &-img{
+      border-radius: 15px;
+      overflow: hidden;
+      margin-bottom: 15px;
+      display: inline-block;
+    }
   }
 }
