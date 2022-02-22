@@ -1,0 +1,16 @@
+<?php
+
+namespace App\Models\Forum;
+
+use App\Models\Comment as BasicComment;
+use App\Scopes\TopicCommentScope;
+
+class Comment extends BasicComment
+{
+    protected $table = 'comments';
+
+    protected static function booted()
+    {
+        static::addGlobalScope(new TopicCommentScope());
+    }
+}

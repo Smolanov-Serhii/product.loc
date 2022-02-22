@@ -1,0 +1,4 @@
+
+{{--@dd($item->properties)--}}
+<?php ddd($item->properties) ?>
+{{ $item->id }}

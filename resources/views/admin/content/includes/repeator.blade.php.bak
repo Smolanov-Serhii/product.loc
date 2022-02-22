@@ -1,0 +1,110 @@
+@php
+    /**
+     * @var $attribute \App\Models\Block_template_attributes
+     * @var $u_id int
+     */
+    $input_name = "iterations[{$u_id}][attributes][{$attribute->id}]";
+@endphp
+
+<div class="form-group field-{{ \App\Models\Block_template_attributes::TYPE_LIST[$attribute->type] }}">
+    <input
+            type="hidden"
+            name="iterations[{{ $u_id }}][parent_id]"
+            value="{{ $parent_id }}"
+    >
+    <input
+            type="hidden"
+            name="iterations[{{ $u_id }}][repeater_id]"
+            value="{{ $repeater->id }}"
+    >
+    @switch($attribute->type)
+
+        @case(0)
+        <label for=""> {{ $attribute->name }} </label>
+        <img
+                class="img-fluid pad"
+                src="{{ '/uploads/block_template_attributes/' . $attribute->default_value }}"
+                alt="Preview"
+                id="image_{{ $u_id }}_{{ $attribute->id }}"
+        >
+        <div class="input-group mb-3" id="option_image_{{ $attribute->id }}">
+            <div class="custom-file">
+                <input
+                        id="optionFile_{{ $u_id }}_{{ $attribute->id }}"
+                        type="file"
+                        class="custom-file-input input"
+                        name="{{ $input_name }}"
+                        data-id="{{ $u_id }}_{{ $attribute->id }}">
+
+                <label
+                        class="custom-file-label"
+                        for="optionFile_{{ $u_id }}_{{ $attribute->id }}"
+                >{{ $attribute->value }}</label>
+            </div>
+        </div>
+        @break
+
+        @case(1)
+        <label for=""> {{ $attribute->name }} </label>
+        <input
+                name="{{ $input_name }}"
+                type="text"
+                class="form-control input"
+                placeholder="{{ $attribute->default_value }}"
+                autocomplete="off"
+        >
+        @break
+
+        @case(2)
+        <label for=""> {{ $attribute->name }} </label>
+        <textarea
+                class="form-control input"
+                rows="3"
+                placeholder="{{ $attribute->default_value }}"
+                name="{{ $input_name }}"
+                id="content_{{ $u_id }}_{{ $attribute->id }}"
+        >{{ $attribute->default_value }}</textarea>
+        @break
+
+        @case(3)
+        <label for=""> {{ $attribute->name }} </label>
+        <textarea
+                class="editor"
+                id="content_{{ $u_id }}_{{ $attribute->id }}"
+        >
+                {!! $attribute->default_value !!}
+            </textarea>
+        @break
+
+        @case(5)
+        <label for=""> {{ $attribute->name }} </label>
+        <div class="input-group mb-3" id="option_image_{{ $attribute->id }}">
+            <div class="custom-file">
+                <input
+                        id="optionFile_{{ $u_id }}_{{ $attribute->id }}"
+                        type="file"
+                        class="custom-file-input input"
+                        name="{{ $input_name }}"
+                        data-id="{{ $u_id }}_{{ $attribute->id }}">
+
+                <label
+                        class="custom-file-label"
+                        for="optionFile_{{ $u_id }}_{{ $attribute->id }}"
+                >{{ $attribute->defalut_value }}</label>
+            </div>
+        </div>
+        @break
+
+        @case(6)
+        <label for=""> {{ $attribute->name }} </label>
+        <input
+                name="{{ $input_name }}"
+                type="color"
+                class="form-control input"
+                placeholder="{{ $attribute->default_value }}"
+                autocomplete="off"
+        >
+        @break
+
+    @endswitch
+</div>

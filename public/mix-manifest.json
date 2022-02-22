@@ -1,0 +1,18 @@
+{
+    "/js/app.js": "/js/app.js",
+    "/js/list.js": "/js/list.js",
+    "/js/var.js": "/js/var.js",
+    "/js/modules.js": "/js/modules.js",
+    "/js/modules/form.js": "/js/modules/form.js",
+    "/js/menu.js": "/js/menu.js",
+    "/js/additions/form.js": "/js/additions/form.js",
+    "/js/seo/form.js": "/js/seo/form.js",
+    "/js/pages/form.js": "/js/pages/form.js",
+    "/js/load.js": "/js/load.js",
+    "/js/block_templates/create.js": "/js/block_templates/create.js",
+    "/js/block_templates/sort.js": "/js/block_templates/sort.js",
+    "/css/style.css": "/css/style.css",
+    "/css/admin.css": "/css/admin.css",
+    "/js/common.js": "/js/common.js",
+    "/js/common.min.js": "/js/common.min.js"
+}

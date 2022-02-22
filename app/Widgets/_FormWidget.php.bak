@@ -1,0 +1,14 @@
+<?php
+namespace App\Widgets;
+
+use App\Widgets\Contract\ContractWidget;
+
+class FormWidget implements ContractWidget
+{
+    public function execute(){
+//        $data = Menu::all();
+        return view('Widgets::form', [
+//            'data' => $data
+        ]);
+    }
+}

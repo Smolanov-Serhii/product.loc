@@ -1,0 +1,1 @@
+{"version":3,"sources":["admin.scss"],"names":[],"mappings":"AAAA,cACI,OAAA,KACA,WAAA","file":"admin.css","sourcesContent":["#templateList{\n    height: 100%;\n    overflow-y: scroll;\n}\n"]}

@@ -1,0 +1,15 @@
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+// CodeMirror
+@import '~codemirror/lib/codemirror.css';
+
+.sidebar-dark-primar{
+  background-color: #132238!important;
+}
