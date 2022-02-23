@@ -64,6 +64,9 @@ $attributes = $module->attrs->mapWithKeys(function ($attr) {
                                 </td>
                             @endif
                             <td>
+{{--                                @dd($item->addition)--}}
+{{--                                @dd($item->seo)--}}
+{{--                                @dd($item)--}}
                                 {{ $item->addition->title }}
 {{--                                @switch($item->module->name)--}}
 {{--                                    @case('programs')--}}

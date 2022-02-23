@@ -3,8 +3,8 @@
 @endphp
 
 <div class="field-repeater {{ $module->name }}-field" id="repeater_{{ $iterator_id }}">
-    <h4>{{ $module_repeater->name }}</h4>
-    @foreach($module_repeater->attrs as $attribute)
+    <h4>{{ $moduleRepeater->name }}</h4>
+    @foreach($moduleRepeater->attrs as $attribute)
         <div class="form-group field-{{ \App\Models\ModuleAttribute::TYPE_LIST[$attribute->type] }}">
             @switch($attribute->type)
                 @case(0)
@@ -18,7 +18,7 @@
                             id="optionFile_{{ $attribute->id }}"
                             type="file"
                             class="custom-file-input input"
-                            name="iterations[{{ $parent }}][{{ $module_repeater->id }}][{{ $iterator_id }}][{{ $attribute->id }}]"
+                            name="iterations[{{ $parent }}][{{ $moduleRepeater->id }}][{{ $iterator_id }}][{{ $attribute->id }}]"
                             required
                         >
                         <label class="custom-file-label" for="optionFile_{{ $attribute->id }}">
@@ -31,7 +31,7 @@
                 @case(1)
                 <label for="key"> {{ $attribute->name }} </label>
                 <input
-                    name="iterations[{{ $parent }}][{{ $module_repeater->id }}][{{ $iterator_id }}][{{ $attribute->id }}]"
+                    name="iterations[{{ $parent }}][{{ $moduleRepeater->id }}][{{ $iterator_id }}][{{ $attribute->id }}]"
                     type="text"
                     class="form-control"
                     id="name"
@@ -48,7 +48,7 @@
                     class="form-control input textarea"
                     rows="3"
                     placeholder="{{ __('system.textarea') }}"
-                    name="iterations[{{ $parent }}][{{ $module_repeater->id }}][{{ $iterator_id }}][{{ $attribute->id }}]"
+                    name="iterations[{{ $parent }}][{{ $moduleRepeater->id }}][{{ $iterator_id }}][{{ $attribute->id }}]"
                     id="content_{{ $attribute->id }}"
                     required
                 >
@@ -62,14 +62,14 @@
                     class="form-control input editor"
                     rows="3"
                     placeholder="{{ __('system.textarea') }}"
-                    name="iterations[{{ $parent }}][{{ $module_repeater->id }}][{{ $iterator_id }}][{{ $attribute->id }}]"
+                    name="iterations[{{ $parent }}][{{ $moduleRepeater->id }}][{{ $iterator_id }}][{{ $attribute->id }}]"
                     id="content_{{ $attribute->id }}"
                     required
                 >
     {{--                    {{ $module_item_props_mapped_by_attr[$attribute->id]->value ?? 'NEW' }}--}}
                     </textarea>
                 {{--                <input--}}
-                {{--                    name="iterations[{{ $parent }}][{{ $module_repeater->id }}][{{ $iterator_id }}][{{ $attribute->id }}]"--}}
+                {{--                    name="iterations[{{ $parent }}][{{ $moduleRepeater->id }}][{{ $iterator_id }}][{{ $attribute->id }}]"--}}
                 {{--                    type="hidden"--}}
                 {{--                    id="hidden_attribute_{{ $attribute->id }}"--}}
                 {{--                    required--}}
@@ -103,7 +103,7 @@
                 @case(5)
                 <label for="key"> {{ $attribute->name }} </label>
                 <input
-                    name="iterations[{{ $parent }}][{{ $module_repeater->id }}][{{ $iterator_id }}][{{ $attribute->id }}]"
+                    name="iterations[{{ $parent }}][{{ $moduleRepeater->id }}][{{ $iterator_id }}][{{ $attribute->id }}]"
                     type="time"
                     class="form-control"
                     id="name"
@@ -125,7 +125,7 @@
         <i class="fa fa-trash" aria-hidden="true"></i>
     </button>
     @include('admin.module_items.includes.repeaters', [
-        $repeaters = $module_repeater->repeaters,
+        $repeaters = $moduleRepeater->repeaters,
         $parent_iteration_id = $iterator_id,
     ])
 </div>

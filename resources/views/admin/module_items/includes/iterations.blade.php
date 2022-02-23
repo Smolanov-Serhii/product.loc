@@ -8,7 +8,7 @@
     type="button"
     class="btn btn-primary btn-icon add-iteration"
     data-template_url="{{ route('admin.module_repeaters.template', [
-        'module_repeater' => $iteration->repeater,
+        'moduleRepeater' => $iteration->repeater,
         'parent_iteration_id' => $parent]) }}"
 {{--    data-iteration_id="{{ $iteration->id }}"--}}
 >

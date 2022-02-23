@@ -174,11 +174,6 @@
   margin-right: 1rem;
 }
 
-.form-group.field-image .input-group,
-.form-group .input-group .input-group {
-  width: 50%;
-}
-
 .remove-iteration {
   margin-bottom: 1rem;
 }

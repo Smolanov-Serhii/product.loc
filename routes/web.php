@@ -192,17 +192,20 @@ Route::group([
     Route::resource('widget', WidgetController::class)
         ->except(['show']);
 
+    Route::resource('language', LanguageController::class)
+        ->except(['show']);
+
     Route::post('comment/moderate/{comment}', [CommentController::class, 'moderate'])->name('comment.moderate');
     Route::resource('comment', CommentController::class)
         ->except(['show']);
 
     Route::prefix('module_repeaters')->group(function () {
-        Route::get('{module_repeater}/{parent_iteration_id}', [ModuleRepeaterController::class, 'show'])->name('module_repeaters.template');
+        Route::get('{moduleRepeater}/{parent_iteration_id}', [ModuleRepeaterController::class, 'show'])->name('module_repeaters.template');
     });
 
-    Route::prefix('languages')->group(function () {
-        Route::get('', [LanguageController::class, 'index'])->name('languages.list');
-    });
+//    Route::prefix('languages')->group(function () {
+//        Route::get('', [LanguageController::class, 'index'])->name('languages.list');
+//    });
 
     Route::prefix('upload')->group(function () {
         Route::post('image', [UploadController::class, 'image'])->name('upload.image');

@@ -99,6 +99,16 @@ class ModuleItem extends Model
     }
 
     /**
+     * @return MorphMany
+     */
+    public function iterable(): MorphMany
+    {
+        return $this->morphMany(ModuleRepeaterIteration::class, 'iterable');
+//            ->hasMany(Module_repeater_iterations::class, 'model_id', 'id')
+//            ->where('model', class_basename(self::class));
+    }
+
+    /**
      * @param null $lang_id
      * @return MorphOne
      */

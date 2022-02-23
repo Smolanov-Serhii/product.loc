@@ -18,8 +18,6 @@ $items = $module->items;
                                     return [$prop->type->key => $prop->value];
                                     });
                 @endphp
-{{--                {{ $contacts['phone'] }}--}}
-{{--                {{ $var['email_text'] }}--}}
                 <a href="{{ route('client.mockup.item', ['alias' => $item->seo->alias]) }}">
                     <picture class="list__content-img">
                         <source media="(min-width: 500px)"

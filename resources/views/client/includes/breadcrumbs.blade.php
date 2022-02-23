@@ -4,7 +4,6 @@
  * @var $model \App\Models\Page_properties;
  */
 ?>
-<!--TODO нужно доработать конструктор страницы для НЦ-->
 {{--@dd($model)--}}
 @if($model->seoable->parent_page_id && $model->alias != '404')
             <div class="breadcrumbs main-container">

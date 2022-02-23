@@ -19,9 +19,9 @@
             </div>
             <nav class="header__nav">
                 <ul class="header__nav-list">
-                    <li class="header__nav-item"><a class="header__nav-lnk" href="#">Mockups</a></li>
-                    <li class="header__nav-item"><a class="header__nav-lnk" href="#">Pricing</a></li>
-                    <li class="header__nav-item"><a class="header__nav-lnk" href="#">Log In</a></li>
+                    <li class="header__nav-item"><a class="header__nav-lnk" href="{{ url('/') . '/mockups' }}">Mockups</a></li>
+                    <li class="header__nav-item"><a class="header__nav-lnk" href="{{ url('/') . '/pricing' }}">Pricing</a></li>
+                    <li class="header__nav-item"><a class="header__nav-lnk" href="{{ url('/') . '/login' }}">Log In</a></li>
                 </ul>
             </nav>
             <div class="header__try button-stroke">

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Module;
 use App\Models\ModuleRepeater;
 
 class ModuleRepeaterController extends Controller
@@ -18,13 +19,13 @@ class ModuleRepeaterController extends Controller
     public function show(ModuleRepeater $moduleRepeater, $parent_iteration_id)
     {
         $data = request()->all();
-//        dd($data);
-        if ($moduleRepeater->model == 'Modules') {
-            $module = $moduleRepeater->module;
-        } elseif ($moduleRepeater->model == 'Module_repeaters') {
+
+        if ($moduleRepeater->repeatable instanceof Module) {
+            $module = $moduleRepeater->repeatable;
+        } elseif ($moduleRepeater->repeatable instanceof ModuleRepeater) {
             $parent = $moduleRepeater->repeatable;
 //            $parent = Module_repeaters::find($moduleRepeater->model_id);
-            $module = $parent->module;
+            $module = $parent->repeatable;
 //            $module = Modules::find($parent->model_id);
         }
         $iteration_id = $data['iteration_id'] ?? 'i'.rand(2e9, 2e12);

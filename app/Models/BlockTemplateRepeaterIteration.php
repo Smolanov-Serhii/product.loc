@@ -31,25 +31,44 @@ class BlockTemplateRepeaterIteration extends Model
 //            ->hasMany(Block_contents::class,'block_template_repeater_iteration_id', 'id');
     }
 
-    public function mappedByKey ()
+    public function mappedByKey()
     {
-        $contents = $this->contents()->with('translations')->get()->mapWithKeys(function ($content) {
-            return [$content->block_template_attribute_id => $content];
-        });
+
+        $contents = $this
+            ->contents()
+            ->with('translations')
+            ->get()
+            ->mapWithKeys(function ($content) {
+                return [$content->block_template_attribute_id => $content];
+            });
+
         return $this
             ->repeater
             ->attrs
-            ->mapWithKeys(function($attr) use ($contents) {
-                $value = $contents[$attr->id]->translations[0] ?? $attr;
-//                $value = $contents[$attr->id]->translations[0] ?? $attr;
-//                dd($contents);
-//                if(!$contents[$attr->id]) {
-//                    dd($contents[$attr->id]);
-//                }
-//                dd([$contents[$attr->id] => $value]);
+            ->mapWithKeys(function ($attr) use ($contents) {
+                $value = optional($contents[$attr->id]->translate)->value ?? $attr;
                 return [$attr->key => $value];
             });
     }
+//    public function mappedByKey ()
+//    {
+//        $contents = $this->contents()->with('translations')->get()->mapWithKeys(function ($content) {
+//            return [$content->block_template_attribute_id => $content];
+//        });
+//        return $this
+//            ->repeater
+//            ->attrs
+//            ->mapWithKeys(function($attr) use ($contents) {
+//                $value = $contents[$attr->id]->translations[0] ?? $attr;
+////                $value = $contents[$attr->id]->translations[0] ?? $attr;
+////                dd($contents);
+////                if(!$contents[$attr->id]) {
+////                    dd($contents[$attr->id]);
+////                }
+////                dd([$contents[$attr->id] => $value]);
+//                return [$attr->key => $value];
+//            });
+//    }
 
     // PROPERTY TEMPLATE
 

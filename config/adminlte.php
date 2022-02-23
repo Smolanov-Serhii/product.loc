@@ -234,7 +234,7 @@ return [
             'url'  => 'admin/blog',
             'can'  => 'manage-blog',
         ],
-        ['header' => 'СТАТЬИ'],
+        ['header' => 'ШАБЛОНЫ'],
         [
             'text'        => 'Мокапы',
 //            'url'         => 'admin/modules',
@@ -262,7 +262,26 @@ return [
                     'text' => 'Hand',
                     'url'  => '/admin/taxonomy/items/list/4',
                 ],
-            ]
+            ],
+
+        ],
+        [
+            'text'        => 'Тарифные планы',
+//            'url'         => 'admin/modules',
+            'icon'        => '/img/admin/blog.svg',
+//            'label'       => 3,
+            'label_color' => 'success',
+            'submenu' => [
+                [
+                    'text' => 'Список планов ',
+                    'url'  => '/admin/modules/items/list/23',
+                ],
+                [
+                    'text' => 'Типы планов',
+                    'url'  => '/admin/taxonomy/items/list/6',
+                ],
+            ],
+
         ],
         ['header' => 'СТРУКТУРА'],
         [
@@ -314,14 +333,14 @@ return [
 //            'label'       => 4,
             'label_color' => 'success',
         ],
-        [
-            'text'        => 'Меню',
-            'url'         => 'admin/menu',
-//            'icon'        => '/img/admin/menu.svg',
-            'icon'        => 'far fa-fw fa-address-card',
-//            'label'       => 3,
-            'label_color' => 'success',
-        ],
+//        [
+//            'text'        => 'Меню',
+//            'url'         => 'admin/menu',
+////            'icon'        => '/img/admin/menu.svg',
+//            'icon'        => 'far fa-fw fa-address-card',
+////            'label'       => 3,
+//            'label_color' => 'success',
+//        ],
         [
             'text'        => 'Модули',
             'url'         => 'admin/modules',
