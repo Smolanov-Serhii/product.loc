@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 @include('client.layouts.head')
-<body class="page-{{ $model->alias }}">
+<body class="page-{{ $page->seo->alias }}">
 <div class="preloader">
     <div class="preloader__row">
         <div class="preloader__item"></div>
@@ -10,7 +10,7 @@
 </div>
 
 {{--header section--}}
-@if($model->alias == "user-login" || $model->alias == "user-register")
+@if($page->seo->alias == "user-login" || $page->seo->alias == "user-register")
 
 @else
     @include('client.layouts.header')
@@ -20,7 +20,7 @@
 <main class="main" id="main">
     <article>
     {{--content section--}}
-        @if($model->alias == "user-login" || $model->alias == "user-register" || $model->alias == "courses" || $model->alias == "blog" || $model->alias == "knowledge"  || $model->alias == "career")
+        @if($page->seo->alias == "user-login" || $page->seo->alias == "user-register" || $page->seo->alias == "courses" || $page->seo->alias == "blog" || $page->seo->alias == "knowledge"  || $page->seo->alias == "career")
 
         @else
             @yield('breadcrumbs')
@@ -35,10 +35,15 @@
 {{--end modal section--}}
 
 {{--footer section--}}
-@if($model->alias == "user-login" || $model->alias == "user-register")
+@if($page->seo->alias == "user-login" || $page->seo->alias == "user-register")
 
 @else
     @include('client.layouts.footer')
+    <div class="body-fade" style="display: none">
+        @include('client.layouts.login-popup')
+        @include('client.layouts.search-popup')
+    </div>
+
 @endif
 
 @yield('client_scripts')

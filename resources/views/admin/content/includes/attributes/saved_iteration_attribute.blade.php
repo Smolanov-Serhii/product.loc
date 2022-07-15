@@ -3,18 +3,28 @@
      * @var $attribute \App\Models\BlockTemplateAttribute
      * @var $iteration \App\Models\BlockTemplateRepeaterIteration
      * @var $u_id int
-     *
+     * @var $language \App\Models\Language
      */
 
 
     $contents = $iteration['contents']->keyBy('block_template_attribute_id');
+    //dd($contents[$attribute->id]->mappedByLang()[$language->id]);
+    //dd($contents[$attribute->id]);
     $iteration_class_name = class_basename(\App\Models\BlockTemplateRepeaterIteration::class);
     if(isset($contents[$attribute->id])) {
         $content = $contents[$attribute->id];
-        $input_name = "old_iterations[{$iteration_class_name}_{$iteration->id}][old_attributes][{$content->id}]";
-        $value = $contents[$attribute->id]['translate']->value;
+        $input_name = "old_iterations[{$iteration_class_name}_{$iteration->id}][old_attributes][{$language->iso}][{$content->id}]";
+
+        //if(is_object($contents[$attribute->id]['translate'])){
+            $value = $contents[$attribute->id]->mappedByLang()[$language->id]->value ?? $attribute->default_value;
+//        } else {
+  //          $value = $attribute->default_value;
+    //    }
+
+
+
     } else {
-        $input_name = "old_iterations[{$iteration_class_name}_{$iteration->id}][attributes][{$attribute->id}]";
+        $input_name = "old_iterations[{$iteration_class_name}_{$iteration->id}][attributes][{$language->iso}][{$attribute->id}]";
         $value = $attribute->default_value;
     }
 @endphp
@@ -112,7 +122,7 @@
         >{!! $value !!}</textarea>
         {{--        <input--}}
         {{--                type="hidden"--}}
-        {{--                id="hidden_content_{{ $content->id }}"--}}PARENT #1
+        {{--                id="hidden_content_{{ $content->id }}"--}}
         {{--                name="{{ $input_name }}"--}}
         {{--        >--}}
         {{--        <div class="textarea" id="content_{{ $content->id }}">--}}
@@ -183,7 +193,7 @@
         {{--            <div class="input-group mb-3" id="option_input_{{ $attribute->id }}" style="">--}}
         @php
             /** @var $attribute \App\Models\BlockTemplateAttribute */
-            $properties = $attribute['setting']->properties;
+            $properties = $attribute->setting->decodedProperties;
         @endphp
         <label for=""> {{ $attribute->name }} </label>
         <select
@@ -201,6 +211,50 @@
                 >{{ $option['value'] }}</option>
             @endforeach
         </select>
+        @break
+
+        @case(10)
+        {{--        @dd($content->translate->value);--}}
+        <label for=""> {{ $attribute->name }} </label>
+        @php
+
+            /** @var $block \App\Models\Block */
+            /** @var $attribute \App\Models\BlockTemplateAttribute */
+            /** @var $value string */
+            $url = isset($contents[$attribute->id])
+            ? '/uploads/contents/' . $value
+            : '/uploads/block_template_attributes/' . $value;
+            $u_img_id = rand(10**4, 10**5);
+        @endphp
+        <img
+                class="img-fluid pad"
+                src="{{ $url }}"
+                alt="Preview"
+                id="image_{{ $iteration->id }}_{{ $attribute->id }}_{{ $u_img_id }}"
+        >
+        {{--            <input type="hidden" name="content[{{ $content->id }}]" value="{{ $content->translate->value }}">--}}
+        <div class="input-group mb-3" id="option_image_{{ $iteration->id }}_{{ $attribute->id }}_{{ $u_img_id }}">
+            <div class="custom-file">
+                {{--                    <input type="hidden" name="content[{{ $attribute->id }}][{{ $content->id }}]" value="{{ $content->value }}">--}}
+                <input
+                        id="optionFile_{{ $iteration->id }}_{{ $attribute->id }}_{{ $u_img_id }}"
+                        type="file"
+                        class="custom-file-input input"
+                        name="{{ $input_name }}"
+                        data-id="{{$iteration->id}}_{{ $attribute->id }}_{{ $u_img_id }}">
+
+                <label class="custom-file-label" for="optionFile_{{$iteration->id}}_{{ $attribute->id }}_{{ $u_img_id }}">{{ $value }}</label>
+            </div>
+        </div>
+        @isset($contents[$attribute->id])
+            <button
+                    type="button"
+                    class="btn btn-danger btn-icon block clear-value"
+                    data-prop_id="{{ $contents[$attribute->id]->id }}"
+                    data-attr_id="{{$iteration->id}}_{{ $attribute->id }}_{{ $u_img_id }}">
+                <i class="fa fa-trash" aria-hidden="true"></i>
+            </button>
+        @endif
         @break
     @endswitch
 </div>

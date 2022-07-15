@@ -9,7 +9,7 @@
             data-lang_iso="{{ $lang->iso }}"
             data-id="{{ $lang->id }}"
             placeholder="{{ __('seo.title') }}"
-            value="{{ $model->seo($lang->id)->first() ? $model->seo($lang->id)->first()->title : old('seo.'.$lang->iso.'.title') }}"
+            value="{{ old('seo.'.$lang->iso.'.title') ?? $model->seo($lang->id)->value('title')  }}"
             required
         >
     </div>
@@ -21,7 +21,7 @@
             class="form-control seo-alias"
             id="seo_alias_{{ $lang->id }}"
             placeholder="{{ __('seo.alias') }}"
-            value="{{ $model->seo($lang->id)->first() ? $model->seo($lang->id)->first()->alias : old('seo.'.$lang->iso.'.alias') }}"
+            value="{{ old('seo.'.$lang->iso.'.alias') ?? $model->seo($lang->id)->value('alias') }}"
             required
         >
     </div>
@@ -33,7 +33,7 @@
             class="form-control seo-alias"
             id="seo_meta_keywords_{{ $lang->id }}"
             placeholder="{{ __('seo.meta_keywords') }}"
-            value="{{ $model->seo($lang->id)->first() ? $model->seo($lang->id)->first()->meta_keywords : old('seo.'.$lang->iso.'.meta_keywords') }}"
+            value="{{ old('seo.'.$lang->iso.'.meta_keywords') ?? $model->seo($lang->id)->value('meta_keywords') }}"
             required
         >
     </div>
@@ -45,7 +45,7 @@
             rows="3"
             id="textarea"
             required
-        >{{ $model->seo($lang->id)->first() ? $model->seo($lang->id)->first()->meta_description : old('seo.'.$lang->iso.'.meta_description') }}</textarea>
+        >{{ old('seo.'.$lang->iso.'.meta_description') ?? $model->seo($lang->id)->value('meta_description') }}</textarea>
     </div>
     <div class="form-group field-image">
 

@@ -23,7 +23,7 @@ class Menu_items extends Model
 
     public function __construct(array $attributes = [])
     {
-        $this->lang_id = Languages::where('iso', App::getLocale())->first()->id;
+        $this->lang_id = Language::where('iso', App::getLocale())->first()->id;
 
         parent::__construct($attributes);
     }
@@ -35,7 +35,7 @@ class Menu_items extends Model
         $lang_id = $lang_id ?? $this->lang_id;
 
         return
-            $this->hasOne(Model_additions::class, 'model_id', 'id')
+            $this->hasOne(ModelAddition::class, 'model_id', 'id')
                 ->where('model', class_basename(self::class))
                 ->where('lang_id', $lang_id);
 

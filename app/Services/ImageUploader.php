@@ -4,6 +4,7 @@ namespace App\Services;
 
 use Illuminate\Contracts\Routing\ResponseFactory;
 use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -53,13 +54,22 @@ class ImageUploader
 
 //            TODO add remove old file
 
-//            Remove old images
-//                    Storage::delete('additions/'. $addition->thumbnail);
-//                    Storage::delete('additions/thumbs/'. $addition->thumbnail);
-
 
         } catch (\Exception $exception) {
             return response('Internal Server Error', Response::HTTP_INTERNAL_SERVER_ERROR);
         }
+    }
+
+    /**
+     * @param string $path
+     * @param string $imageName
+     * @return bool
+     */
+    public function deleteImage(string $path, string $imageName): bool
+    {
+        Storage::delete(implode('/', [$path, $imageName]));
+        Storage::delete(implode('/', [$path, 'thumbs', $imageName]));
+
+        return true;
     }
 }

@@ -13,6 +13,42 @@ use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+/**
+ * App\Models\Module
+ *
+ * @property int $id
+ * @property string $name
+ * @property int|null $admin_created_id
+ * @property int|null $admin_updated_id
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\ModuleAttribute[] $attrs
+ * @property-read int|null $attrs_count
+ * @property-read \App\Models\BlockTemplateGroup|null $group
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\ModuleItem[] $items
+ * @property-read int|null $items_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|Module[] $modules
+ * @property-read int|null $modules_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\ModuleRepeater[] $repeaters
+ * @property-read int|null $repeaters_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Taxonomy[] $taxonomies
+ * @property-read int|null $taxonomies_count
+ * @method static \Illuminate\Database\Eloquent\Builder|Module newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Module newQuery()
+ * @method static \Illuminate\Database\Query\Builder|Module onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|Module query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Module whereAdminCreatedId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Module whereAdminUpdatedId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Module whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Module whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Module whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Module whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Module whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|Module withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|Module withoutTrashed()
+ * @mixin \Eloquent
+ */
 class Module extends Model
 {
     use HasFactory, HasSystemFields, SoftDeletes, HasSoftDeletedRelation;

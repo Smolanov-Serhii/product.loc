@@ -70,7 +70,7 @@ class CommentController extends Controller
                 return response()->json([
                     'status' => true,
                     'target_id' => $target_id,
-                    'message' => 'Комментарий будет виден после модерации'
+                    'message' => 'Ваш комментарий ожидает можерации'
                 ]);
 //            }
         } catch (\Exception $e) {

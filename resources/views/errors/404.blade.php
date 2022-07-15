@@ -1,16 +1,15 @@
-@extends('errors.layout')
+@extends('client.layouts.main')
 
-@php
-  $error_number = 404;
-@endphp
+@section('content')
+    @foreach($page->blocks as $block)
+        @if($block->enabled)
 
-@section('title')
-  Page not found.
-@endsection
+            <?php
+            /** @var $block \App\Models\Block; */
+            $view = explode('.', $block->template->path)[0];
+            ?>
 
-@section('description')
-  @php
-    $default_error_message = "Please <a href='javascript:history.back()''>go back</a> or return to <a href='".url('')."'>our homepage</a>.";
-  @endphp
-  {!! isset($exception)? ($exception->getMessage()?$exception->getMessage():$default_error_message): $default_error_message !!}
+            @includeIf('client.block_templates.templates.'.$view)
+        @endif
+    @endforeach
 @endsection

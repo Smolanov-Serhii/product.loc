@@ -2,8 +2,7 @@
 
 namespace App\Services;
 
-use App\Models\Modules;
-use App\Models\Role;
+use App\Models\Module;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 
@@ -11,6 +10,7 @@ class UserService
 {
     /**
      * create user
+     * @param array $data
      * @return User
      */
     public function createUser(array $data): User
@@ -23,7 +23,7 @@ class UserService
 
         $user->setRole($data['role']);
 
-        $profile = Modules::where('name', 'profile')
+        $profile = Module::where('name', 'profile')
             ->first()
             ->items()
             ->create();

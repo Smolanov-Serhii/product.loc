@@ -17,7 +17,15 @@
                         value="{{ $item->id }}"
                         @isset($mapped[$item->id]) checked @endif
                 >
-                <span>{{ $properties['item-title'] }}</span>
+                @if($neighbour_module->name == "treners")
+                    <span>{{ $properties['item-title'] }}</span>
+                @elseif($neighbour_module->name == "subscriptions")
+                    <span>{{ $properties['subscription-name'] }}</span>
+                @elseif($neighbour_module->name == "trainings")
+                    <span>{{ $properties['title'] }}</span>
+                @else
+                    <span>{{ $properties['item-title'] }}</span>
+                @endif
             </label>
         </div>
     @endforeach

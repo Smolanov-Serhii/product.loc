@@ -110,18 +110,53 @@
             @endforeach
         </select>
     </div>
-    <div class="variable-value">
-{{--        <div class="form-group">--}}
-{{--            <label for="value"> @lang('variables.value') </label>--}}
-{{--            <input--}}
-{{--                name="value"--}}
-{{--                type="text"--}}
-{{--                class="form-control"--}}
-{{--                id="value"--}}
-{{--                placeholder="value"--}}
-{{--                value=""--}}
-{{--            >--}}
-{{--        </div>--}}
+    <div class="card card-primary card-outline card-tabs">
+        <div class="card-header p-0 pt-1 border-bottom-0">
+            <ul class="nav nav-tabs" id="custom-tabs-two-tab" role="tablist">
+                @foreach(\App\Models\Language::where('enabled', true)->get() as $language)
+                    <li class="nav-item">
+                        <a class="nav-link @if($loop->first) active @endif"
+                           id="addition_tab_link"
+                           data-toggle="pill"
+                           href="#content_tab_{{ $language->iso }}"
+                           role="tab"
+                           aria-controls="custom-tabs-two-home"
+                           aria-selected="false"
+                        >
+                            {{ $language->iso }}
+                        </a>
+                    </li>
+                @endforeach
+
+                {{--                <li class="nav-item">--}}
+                {{--                    <a class="nav-link"--}}
+                {{--                       id="seo_tab_link"--}}
+                {{--                       data-toggle="pill"--}}
+                {{--                       href="#seo_tab_"--}}
+                {{--                       role="tab"--}}
+                {{--                       aria-controls="custom-tabs-two-profile"--}}
+                {{--                       aria-selected="false"--}}
+                {{--                    >--}}
+                {{--                        @lang('seo.form_tab')--}}
+                {{--                    </a>--}}
+                {{--                </li>--}}
+            </ul>
+        </div>
+        <div class="card-body">
+            <div class="tab-content" id="custom-tabs-two-tabContent">
+                @foreach(\App\Models\Language::enabled()->get() as $language)
+                    <div class="tab-pane fade show @if($loop->first) active @endif"
+                         id="content_tab_{{ $language->iso }}"
+                         role="tabpanel"
+                         aria-labelledby="content_tab_{{ $language->iso }}">
+                        <div class="variable-value" data-iso="{{ $language->iso }}">
+
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+        <!-- /.card -->
     </div>
 </div>
 

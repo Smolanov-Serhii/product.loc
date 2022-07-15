@@ -77,10 +77,12 @@ $(document).on('click', '.edit-content', function (e) {
                 revert: 300,
                 placeholder: "movable-placeholder",
                 start: function(e, ui) {
+                    alert(2)
                     ui.placeholder.height(ui.item[0].clientHeight);
                     ui.placeholder.width(ui.item[0].clientWidth * .8);
                 },
                 update: function( event, ui ) {
+                    alert(0)
                     for (let i = 0; i < event.target.children.length; i++) {
                         $(event.target.children[i]).find('input.order')[0].value = i+1;
                     }
@@ -214,6 +216,18 @@ $(document).on('click', '.add-iteration', function (e) {
 
             this.previousElementSibling.append(element);
             element.outerHTML = data.html;
+
+            // console.log(this.previousElementSibling)
+            for (let i = 0; i < this.previousElementSibling.children.length; i++) {
+                $(this.previousElementSibling.children[i]).find('input.order')[0].value = i+1;
+            }
+            // $('.iterations').each((i, e) => {
+            //     console.log(i,e)
+            // })
+            // for (let i = 0; i < event.target.children.length; i++) {
+            //     $(event.target.children[i]).find('input.order')[0].value = i+1;
+            // }
+
 
             $(`#option_editor_${data.u_id} .editor`).each(function (element) {
                 var id = this.id;

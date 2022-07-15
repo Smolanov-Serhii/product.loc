@@ -9,7 +9,7 @@
             data-lang_iso="{{ $lang->iso }}"
             data-id="{{ $lang->id }}"
             placeholder="{{ __('additions.title') }}"
-            value="{{ $model->addition($lang->id)->first() ? $model->addition($lang->id)->first()->title : old('additions.'.$lang->iso.'.title') }}"
+            value="{{ old('additions.'.$lang->iso.'.title') ?? $model->addition($lang->id)->value('title')}}"
             required
         >
     </div>
@@ -20,7 +20,7 @@
             class="form-control"
             rows="3"
             id="textarea"
-        >{{ $model->addition($lang->id)->first() ? $model->addition($lang->id)->first()->excerpt : old('additions.'.$lang->iso.'.excerpt') }}</textarea>
+        >{{ old('additions.'.$lang->iso.'.excerpt') ?? $model->addition($lang->id)->value('excerpt') }}</textarea>
     </div>
 {{--    @dd($lang->id)--}}
 {{--    @dd($model->addition)--}}
@@ -32,7 +32,7 @@
 {{--            name="additions[{{ $lang->iso }}][content]"--}}
 {{--        >--}}
         <textarea class="addition-content editor" name="additions[{{ $lang->iso }}][content]" id="hidden_addition_content_{{ $lang->id }}" rows="3">
-            {{ $model->addition($lang->id)->first() ? $model->addition($lang->id)->first()->content : old('additions.'.$lang->iso.'.excerpt') }}
+            {{ old('additions.'.$lang->iso.'.content') ?? $model->addition($lang->id)->value('content') }}
         </textarea>
 {{--        <div--}}
 {{--            class="addition-content"--}}

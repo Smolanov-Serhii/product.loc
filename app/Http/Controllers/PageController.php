@@ -4,17 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StorePageRequest;
 use App\Models\Language;
-use App\Models\ModelAddition;
 use App\Models\ModelSeo;
+use App\Models\ModuleItem;
 use App\Models\Page;
-use App\Models\PageProperty;
 use App\Repositories\PageRepository;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Http\Request;
-use Intervention\Image\Facades\Image;
 use Illuminate\View\View;
 
 class PageController extends Controller
@@ -45,10 +40,10 @@ class PageController extends Controller
      */
     public function create(): View
     {
-        $pages = Page::all();
+        $pages = $this->pageRepository->tree();
         $languages = Language::enabled()->get();
         $model = new Page;
-        $aliases = ModelAddition::all()->pluck('alias')->toArray();
+        $aliases = ModelSeo::all()->pluck('alias')->toArray();
 
         return view('admin.pages.create', compact('pages', 'languages', 'model', 'aliases'));
     }
@@ -57,7 +52,7 @@ class PageController extends Controller
      * Store a newly created resource in storage.
      *
      * @param StorePageRequest $request
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function store(StorePageRequest $request): RedirectResponse
     {
@@ -73,28 +68,39 @@ class PageController extends Controller
     /**
      * Display the specified resource.
      *
-     * //     * @param \App\Models\Page $pages
-     *
+     * @param string $alias
      * @return View
      */
 //    public function show(Request $request)
-    public function show($alias = 'main')
+    public function show(): View
     {
-        $model = ModelSeo::where('alias', $alias)
-                ->first()
-            ??
-            ModelSeo::where('alias', '404')
-                ->first();;
 
-        if ($model->seoable->auth_only && !auth()->user()) {
+//        $model = ModelSeo::where('alias', $alias)->first()
+//        TODO get item by module item attribute name value instead any value in props list
+        $module_item = ModuleItem::whereHas('props', function (Builder $query) {
+            $query->where('value', request()->getHttpHost());
+        })
+            ->with(['seo', 'addition'])
+            ->first();
+
+        if($module_item) {
+//        $module_item = $model->seoable;
+            $page = new Page;
+            $page->seo = $module_item->seo;
+//        TODO FUCK!!!!!
+            return view("client.module_items.landings.item", compact('module_item', 'page'));
+        }
+
+        $page = $this->pageRepository->getByAlias(request()->alias);
+//        dd($page);
+
+        if ($page->auth_only && !auth()->user()) {
             echo 403;
             die;
 //            return abort(403);
         }
 
-        return view('client.page.content', compact('model'));
-
-
+        return view('client.page.content', compact('page'));
     }
 
     /**
@@ -106,7 +112,8 @@ class PageController extends Controller
     public function edit(Page $page): View
     {
         $model = $page;
-        $pages = Page::all();
+        $pages = $this->pageRepository->tree();
+
         $languages = Language::enabled()->get();
         $aliases = ModelSeo::where('alias', '!=', optional($page->seo)->alias)->pluck('alias')->toArray();
 
@@ -118,75 +125,16 @@ class PageController extends Controller
      *
      * @param StorePageRequest $request
      * @param Page $page
-     * @return \Illuminate\Http\JsonResponse
+     * @return RedirectResponse
      */
-    public function update(StorePageRequest $request, Page $page)
+    public function update(StorePageRequest $request, Page $page): RedirectResponse
     {
-        $data = $request->all();
 
-        $page->update($data);
-
-        foreach ($data['additions'] as $lang => $addition) {
-            if (
-                $request->hasFile("additions.$lang.thumbnail")
-                && $request->file("additions.$lang.thumbnail")->isValid()
-            ) {
-                $imageURL = request()->file("additions.$lang.thumbnail")->store('additions');
-                $path_ar = explode('/', $imageURL);
-                $addition['thumbnail'] = end($path_ar);
-                Image::make(public_path('uploads/additions/') . $addition['thumbnail'])
-                    ->resize(320, null, function ($constraint) {
-                        $constraint->aspectRatio();
-                    })
-                    ->save(public_path('uploads/additions/') . '/thumbs/' . $addition['thumbnail']);
-            }
-
-            if (isset($data['additions'][$lang])) {
-                $lang_id = Language::where('iso', $lang)->first()->id;
-
-                $model_addition = $page->addition($lang_id);
-                if ($model_addition) {
-
-                    $model_addition->update($addition);
-                } else {
-                    $addition['lang_id'] = $lang_id;
-                    ModelAddition::create($addition);
-                }
-            }
-        }
-//dd($data['seo']);
-        foreach ($data['seo'] as $lang => $seo) {
-            if (
-                $request->hasFile("seo.$lang.thumbnail")
-                && $request->file("seo.$lang.thumbnail")->isValid()
-            ) {
-                $imageURL = request()->file("seo.$lang.thumbnail")->store('seo');
-                $path_ar = explode('/', $imageURL);
-                $seo['thumbnail'] = end($path_ar);
-                Image::make(public_path('uploads/seo/') . $seo['thumbnail'])
-                    ->resize(320, null, function ($constraint) {
-                        $constraint->aspectRatio();
-                    })
-                    ->save(public_path('uploads/seo/') . 'thumbs/' . $seo['thumbnail']);
-
-//            Remove old images
-//                    Storage::delete('seo/'. $seo->thumbnail);
-//                    Storage::delete('seo/thumbs/'. $seo->thumbnail);
-
-            }
-
-            if (isset($data['seo'][$lang])) {
-                $lang_id = Language::where('iso', $lang)->first()->id;
-
-                $model_seo = $page->seo($lang_id);
-//                    if($model_seo) {
-                $model_seo->update($seo);
-//                    } else {
-//                        $seo['lang_id'] = $lang_id;
-//                        dd(Model_seo::create($seo));
-//                    }
-            }
-        }
+        $this->pageRepository->update($page, [
+            'page' => $request->except('additions', 'seo'),
+            'additions' => request('additions'),
+            'seo' => request('seo')
+        ]);
 
         return redirect('admin/pages');
     }

@@ -9,6 +9,40 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+/**
+ * App\Models\ModuleRepeaterIteration
+ *
+ * @property int $id
+ * @property int $module_repeater_id
+ * @property int $iterable_id
+ * @property string $iterable_type
+ * @property int|null $admin_created_id
+ * @property int|null $admin_updated_id
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|ModuleRepeaterIteration[] $iterations
+ * @property-read int|null $iterations_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\ModuleItemProperty[] $props
+ * @property-read int|null $props_count
+ * @property-read \App\Models\ModuleRepeater|null $repeater
+ * @method static \Illuminate\Database\Eloquent\Builder|ModuleRepeaterIteration newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|ModuleRepeaterIteration newQuery()
+ * @method static \Illuminate\Database\Query\Builder|ModuleRepeaterIteration onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|ModuleRepeaterIteration query()
+ * @method static \Illuminate\Database\Eloquent\Builder|ModuleRepeaterIteration whereAdminCreatedId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ModuleRepeaterIteration whereAdminUpdatedId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ModuleRepeaterIteration whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ModuleRepeaterIteration whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ModuleRepeaterIteration whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ModuleRepeaterIteration whereIterableId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ModuleRepeaterIteration whereIterableType($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ModuleRepeaterIteration whereModuleRepeaterId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ModuleRepeaterIteration whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|ModuleRepeaterIteration withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|ModuleRepeaterIteration withoutTrashed()
+ * @mixin \Eloquent
+ */
 class ModuleRepeaterIteration extends Model
 {
     use HasFactory, HasSystemFields, SoftDeletes;

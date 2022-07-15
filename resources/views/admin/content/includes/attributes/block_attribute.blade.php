@@ -3,7 +3,14 @@
     @php
         /** @var $block \App\Models\Block */
         /** @var $attribute \App\Models\BlockTemplateAttribute */
+        /** @var $language \App\Models\Language */
         $prop = $block->contents()->attribute($attribute->id)->first();
+        $input_name = "content[{$language->iso}][{$attribute->id }]";
+
+        $value = $prop
+        ? ($block->contents()->attribute($attribute->id)->first()->translations()->where('lang_id', $language->id)->first()->value ?? '')
+        : $attribute->default_value;
+
 
     @endphp
     @switch($attribute->type)
@@ -15,7 +22,7 @@
             /** @var $block \App\Models\Block */
             /** @var $attribute \App\Models\BlockTemplateAttribute */
             $url = $prop
-                ? '/uploads/contents/' .$block->contents()->attribute($attribute->id)->first()->translate->value ?? ''
+                ? '/uploads/contents/' . $value
                 : '/uploads/block_template_attributes/' . $attribute->default_value;
             $u_img_id = rand(10**4, 10**5);
         @endphp
@@ -38,7 +45,7 @@
                         id="optionFile_{{ $attribute->id }}_{{ $u_img_id }}"
                         type="file"
                         class="custom-file-input input"
-                        name="content[{{ $attribute->id }}]"
+                        name="{{ $input_name }}"
                         data-id="{{ $attribute->id }}_{{ $u_img_id }}">
 
                 <label class="custom-file-label"
@@ -52,12 +59,12 @@
         {{--            <div class="input-group mb-3" id="option_input_{{ $attribute->id }}" style="">--}}
         <label for=""> {{ $attribute->name }} </label>
         <input
-                name="content[{{ $attribute->id }}]"
+                name="{{ $input_name }}"
                 type="text"
                 class="form-control input"
                 placeholder="{{ $attribute->default_value }}"
                 autocomplete="off"
-                value="{{ $block->contents()->attribute($attribute->id)->first()->translate->value ?? '' }}"
+                value="{{ $value }}"
         >
         {{--                <div class="input-group-append">--}}
         {{--                    <a href="#" class="btn btn-danger remove-input"><i class="fas fa-trash"></i></a>--}}
@@ -75,9 +82,9 @@
                 class="form-control input textarea"
                 rows="3"
                 placeholder="{{ $attribute->default_value }}"
-                name="content[{{ $attribute->id }}]"
+                name="{{ $input_name }}"
                 id="content_{{ $attribute->id }}"
-        >{{ $block->contents()->attribute($attribute->id)->first()->translate->value ?? '' }}</textarea>
+        >{{ $value }}</textarea>
         {{--                <div class="input-group-append">--}}
         {{--                    <a href="#" class="btn btn-danger remove-input"><i class="fas fa-trash"></i></a>--}}
         {{--                </div>--}}
@@ -90,9 +97,9 @@
             <label for=""> {{ $attribute->name }} </label>
             <textarea
                     class="editor"
-                    id="content_{{ $u_id }}_{{ $attribute->id }}"
-                    name="content[{{ $attribute->id }}]"
-            >{!! $block->contents()->attribute($attribute->id)->first()->translate->value ?? '' !!}</textarea>
+                    id="content_{{ $u_id }}_{{ $attribute->id }}_{{ $language->id }}"
+                    name="{{ $input_name }}"
+            >{!! $value !!}</textarea>
         </div>
 
         {{--        <label for=""> {{ $attribute->name }} </label>--}}
@@ -136,7 +143,7 @@
                         id="optionFile_{{ $attribute->id }}"
                         type="file"
                         class="custom-file-input input"
-                        name="content[{{ $attribute->id }}]"
+                        name="{{ $input_name }}"
                         data-id="{{ $attribute->id }}">
                 <label class="custom-file-label"
                        for="optionFile_{{ $attribute->id }}">{{ $attribute->value }}</label>
@@ -147,24 +154,24 @@
         @case(6)
         <label for=""> {{ $attribute->name }} </label>
         <input
-                name="content[{{ $attribute->id }}]"
+                name="{{ $input_name }}"
                 type="color"
                 class="form-control color"
                 placeholder="{{ $attribute->default_value }}"
                 autocomplete="off"
-                value="{{ $block->contents()->attribute($attribute->id)->first()->translate->value ?? '' }}"
+                value="{{ $value }}"
         >
         @break
 
         @case(7)
         @php
             /** @var $attribute \App\Models\BlockTemplateAttribute */
-            $properties = $attribute['setting']->properties;
+            $properties = $attribute->setting->decodedProperties;
         @endphp
 
         <label for="{{ $properties['id'] }}">{{ $attribute->name }}</label>
         <select
-                name="content[{{ $attribute->id }}]"
+                name="{{ $input_name }}"
                 id="{{ $properties['id'] }}"
                 @class($properties['class_list'])
                 @isset($properties['size']) size="{{ $properties['size'] }}" @endif
@@ -189,22 +196,22 @@
         @break
 
         @case(9)
-            <label for=""> {{ $attribute->name }} </label>
+        <label for=""> {{ $attribute->name }} </label>
 
-            <input
-                    name="content[{{ $attribute->id }}]"
-                    type="hidden"
-                    value="0"
-            >
         <input
-                    name="content[{{ $attribute->id }}]"
-                    type="checkbox"
-                    class="form-control input"
-                    placeholder="{{ $attribute->default_value }}"
-                    autocomplete="off"
-                    @if($block->contents()->attribute($attribute->id)->first()->translate->value == 'on') checked @endif
-{{--                    value="{{ $block->contents()->attribute($attribute->id)->first()->translate->value ?? '' }}"--}}
-            >
+                name="{{ $input_name }}"
+                type="hidden"
+                value="0"
+        >
+        <input
+                name="{{ $input_name }}"
+                type="checkbox"
+                class="form-control input"
+                placeholder="{{ $attribute->default_value }}"
+                autocomplete="off"
+                @if($block->contents()->attribute($attribute->id)->first()->translate->value == 'on') checked @endif
+                {{--                    value="{{ $block->contents()->attribute($attribute->id)->first()->translate->value ?? '' }}"--}}
+        >
 
         @break
 

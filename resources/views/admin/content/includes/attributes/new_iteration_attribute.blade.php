@@ -3,9 +3,11 @@
         /**
          * @var $attribute \App\Models\BlockTemplateAttribute
          * @var $u_id int
+         * @var $language \App\Models\Language
          */
-        $input_name = "iterations[{$u_id}][attributes][{$attribute->id}]";
+        $input_name = "iterations[{$u_id}][attributes][{$language->iso}][{$attribute->id}]";
     @endphp
+
     <div class="form-group field-{{ \App\Models\BlockTemplateAttribute::TYPE_LIST[$attribute->type] }}">
         @switch($attribute->type)
 
@@ -15,23 +17,23 @@
             @endphp
             <label for=""> {{ $attribute->name }} </label>
             <img
-                class="img-fluid pad"
-                src="{{ '/uploads/block_template_attributes/' . $attribute->default_value }}"
-                alt="Preview"
-                id="image_{{ $u_id }}_{{ $attribute->id }}_{{ $u_img_id }}"
+                    class="img-fluid pad"
+                    src="{{ '/uploads/block_template_attributes/' . $attribute->default_value }}"
+                    alt="Preview"
+                    id="image_{{ $u_id }}_{{ $attribute->id }}_{{ $u_img_id }}"
             >
             <div class="input-group mb-3" id="option_image_{{ $attribute->id }}">
                 <div class="custom-file">
                     <input
-                        id="optionFile_{{ $u_id }}_{{ $attribute->id }}_{{ $u_img_id }}"
-                        type="file"
-                        class="custom-file-input input"
-                        name="{{ $input_name }}"
-                        data-id="{{ $u_id }}_{{ $attribute->id }}_{{ $u_img_id }}">
+                            id="optionFile_{{ $u_id }}_{{ $attribute->id }}_{{ $u_img_id }}"
+                            type="file"
+                            class="custom-file-input input"
+                            name="{{ $input_name }}"
+                            data-id="{{ $u_id }}_{{ $attribute->id }}_{{ $u_img_id }}">
 
                     <label
-                        class="custom-file-label"
-                        for="optionFile_{{ $u_id }}_{{ $attribute->id }}"
+                            class="custom-file-label"
+                            for="optionFile_{{ $u_id }}_{{ $attribute->id }}"
                     >{{ $attribute->value }}</label>
                 </div>
             </div>
@@ -40,22 +42,22 @@
             @case(1)
             <label for=""> {{ $attribute->name }} </label>
             <input
-                name="{{ $input_name }}"
-                type="text"
-                class="form-control input"
-                placeholder="{{ $attribute->default_value }}"
-                autocomplete="off"
+                    name="{{ $input_name }}"
+                    type="text"
+                    class="form-control input"
+                    placeholder="{{ $attribute->default_value }}"
+                    autocomplete="off"
             >
             @break
 
             @case(2)
             <label for=""> {{ $attribute->name }} </label>
             <textarea
-                class="form-control input"
-                rows="3"
-                placeholder="{{ $attribute->default_value }}"
-                name="{{ $input_name }}"
-                id="content_{{ $u_id }}_{{ $attribute->id }}"
+                    class="form-control input"
+                    rows="3"
+                    placeholder="{{ $attribute->default_value }}"
+                    name="{{ $input_name }}"
+                    id="content_{{ $u_id }}_{{ $attribute->id }}"
             >{{ $attribute->default_value }}</textarea>
             @break
 
@@ -63,9 +65,9 @@
             <div class="input-group mb-3" id="option_editor_{{ $u_id }}">
                 <label for=""> {{ $attribute->name }} </label>
                 <textarea
-                    class="editor"
-                    id="content_{{ $u_id }}_{{ $attribute->id }}"
-                    name="{{ $input_name }}"
+                        class="editor"
+                        id="content_{{ $u_id }}_{{ $attribute->id }}"
+                        name="{{ $input_name }}"
                 >{!! $attribute->default_value !!}</textarea>
             </div>
             @break
@@ -79,15 +81,15 @@
             <div class="input-group mb-3" id="option_image_{{ $attribute->id }}">
                 <div class="custom-file">
                     <input
-                        id="optionFile_{{ $u_id }}_{{ $attribute->id }}"
-                        type="file"
-                        class="custom-file-input input"
-                        name="{{ $input_name }}"
-                        data-id="{{ $u_id }}_{{ $attribute->id }}">
+                            id="optionFile_{{ $u_id }}_{{ $attribute->id }}"
+                            type="file"
+                            class="custom-file-input input"
+                            name="{{ $input_name }}"
+                            data-id="{{ $u_id }}_{{ $attribute->id }}">
 
                     <label
-                        class="custom-file-label"
-                        for="optionFile_{{ $u_id }}_{{ $attribute->id }}"
+                            class="custom-file-label"
+                            for="optionFile_{{ $u_id }}_{{ $attribute->id }}"
                     >{{ $attribute->defalut_value }}</label>
                 </div>
             </div>
@@ -96,11 +98,11 @@
             @case(6)
             <label for=""> {{ $attribute->name }} </label>
             <input
-                name="{{ $input_name }}"
-                type="color"
-                class="form-control input"
-                placeholder="{{ $attribute->default_value }}"
-                autocomplete="off"
+                    name="{{ $input_name }}"
+                    type="color"
+                    class="form-control input"
+                    placeholder="{{ $attribute->default_value }}"
+                    autocomplete="off"
             >
             @break
 
@@ -109,21 +111,21 @@
             {{--            <div class="input-group mb-3" id="option_input_{{ $attribute->id }}" style="">--}}
             @php
                 /** @var $attribute \App\Models\BlockTemplateAttribute */
-                $properties = $attribute['setting']->properties;
+                $properties = $attribute->setting->decodedProperties;
             @endphp
             <label for=""> {{ $attribute->name }} </label>
             <select
-                name="{{ $input_name }}"
-                id="{{ $properties['id'] }}"
-                @class($properties['class_list'])
-                @isset($properties['size']) size="{{ $properties['size'] }}" @endif
-                @if(isset($properties['multiple']) and $properties['multiple']) multiple="multiple" @endif
+                    name="{{ $input_name }}"
+                    id="{{ $properties['id'] }}"
+                    @class($properties['class_list'])
+                    @isset($properties['size']) size="{{ $properties['size'] }}" @endif
+                    @if(isset($properties['multiple']) and $properties['multiple']) multiple="multiple" @endif
             >
 
                 @foreach($properties['options_list'] as $value => $option)
                     <option
-                        value="{{ $value }}"
-                        @if(isset($option['selected']) and $option['selected']) selected @endif
+                            value="{{ $value }}"
+                            @if(isset($option['selected']) and $option['selected']) selected @endif
                     >{{ $option['value'] }}</option>
                 @endforeach
             </select>

@@ -10,8 +10,11 @@ use App\Models\ModuleAttribute;
 use App\Models\ModuleItem;
 use App\Models\ModuleItemProperty;
 use App\Models\ModuleRepeaterIteration;
+use App\Models\Page;
 use App\Models\TaxonomyItem;
 use App\Repositories\ModuleItemsRepository;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Storage;
@@ -19,7 +22,6 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use Illuminate\View\View;
 use Intervention\Image\Facades\Image;
-use Illuminate\Support\Facades\Route;
 
 class ModuleItemController extends Controller
 {
@@ -33,9 +35,9 @@ class ModuleItemController extends Controller
     /**
      * Display a listing of the resource.
      * @param Module $module
-     * @return \Illuminate\Http\Response
+     * @return View
      */
-    public function index(Module $module)
+    public function index(Module $module): View
     {
         return view('admin.module_items.index', compact('module'));
     }
@@ -43,9 +45,9 @@ class ModuleItemController extends Controller
     /**
      * Show the form for creating a new resource.
      * @param Module $module
-     * @return \Illuminate\Http\Response
+     * @return View
      */
-    public function create(Module $module)
+    public function create(Module $module): View
     {
         $module_item = new ModuleItem();
         $module_item->module = $module;
@@ -311,8 +313,48 @@ class ModuleItemController extends Controller
     {
         if ($model = ModelSeo::where('alias', $alias)->first()) {
             $module_item = $model->seoable;
+            $page = new Page;
+            $page->seo = $model;
+//            $alias = $module_item->module->name;
+//            dd($alias);
+//            $page = Page::whereHas('seo', function (Builder $query) use ($alias) {
+//                $query
+//                    ->where('alias', $alias)
+//                    ->orWhere('alias', 404);
+//            })
+//                ->with(['seo', 'addition'])
+//                ->first();
 
-            return view("client.module_items.{$module_item->module->name}.item", compact('module_item', 'model'));
+            return view("client.module_items.{$module_item->module->name}.item", compact('module_item', 'model', 'page'));
+        } elseif ($taxonomy_item = TaxonomyItem::where('key', $alias)->first()) {
+
+            $module_name = Str::of(request()->route()->getPrefix())->ltrim('/');
+
+            $model = ModelSeo::where('alias', $module_name)->first();
+
+            return view("client.module_items.{$module_name}.category", compact('model'));
+        }
+    }
+
+
+    public function site()
+    {
+        dd(request()->getHttpHost());
+        if ($model = ModelSeo::where('alias', $alias)->first()) {
+            $module_item = $model->seoable;
+            $page = new Page;
+            $page->seo = $model;
+//            $alias = $module_item->module->name;
+//            dd($alias);
+//            $page = Page::whereHas('seo', function (Builder $query) use ($alias) {
+//                $query
+//                    ->where('alias', $alias)
+//                    ->orWhere('alias', 404);
+//            })
+//                ->with(['seo', 'addition'])
+//                ->first();
+
+            return view("client.module_items.{$module_item->module->name}.item", compact('module_item', 'model', 'page'));
         } elseif ($taxonomy_item = TaxonomyItem::where('key', $alias)->first()) {
 
             $module_name = Str::of(request()->route()->getPrefix())->ltrim('/');
@@ -584,7 +626,7 @@ class ModuleItemController extends Controller
      * Remove the specified resource from storage.
      *
      * @param ModuleItem $module_item
-     * @return \Illuminate\Http\Response
+     * @return RedirectResponse
      */
     public function destroy(ModuleItem $module_item)
     {

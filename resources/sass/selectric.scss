@@ -3,17 +3,16 @@ $selectric-secondary-color: #BBB !default;                                      
 $selectric-text-color:      #B7B7C6 !default;                                              // Color used in label
 $selectric-bg-color:        #FFFFFF !default;                                           // Background color
 $selectric-btn-bg-color:    transparent !default;                                           // Button background color
-$selectric-height:          54px !default;                                              // Outer height
+$selectric-height:          66px !default;                                              // Outer height
 $selectric-spacing:         10px !default;                                              // Label left padding
 $selectric-border-width:    0px !default;                                               // Outer border width
-$selectric-border-radius:   10px !default;                                               // Border radius
+$selectric-border-radius:   20px !default;                                               // Border radius
 $selectric-inner-height:    $selectric-height - ($selectric-border-width * 2) !default; // Inner height
-$selectric-font-size:       1.8rem !default;                                              // Font size
+$selectric-font-size:       2rem !default;                                              // Font size
 
 .selectric-wrapper {
   position: relative;
   cursor: pointer;
-  font-family: 'Futura PT';
 }
 
 .selectric-responsive {
@@ -27,9 +26,10 @@ $selectric-font-size:       1.8rem !default;                                    
   position: relative;
   overflow: hidden;
     min-width: 300px;
-    background: #141D2B;
+    background: #FFFFFF;
     @media all and (max-width: 500px) {
         min-width: auto;
+      border-radius: 10px;
     }
   .label {
     display: flex;
@@ -39,23 +39,25 @@ $selectric-font-size:       1.8rem !default;                                    
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    padding: 14px 50px 14px 32px;
-      font-size: 1.2rem;
+    padding: 19px 72px 19px 72px;
+      font-size: 2rem;
       line-height: 120%;
       letter-spacing: 0.075em;
       text-transform: uppercase;
-      color: #FFFFFF;
     height: $selectric-inner-height;
     user-select: none;
+    font-weight: 700;
+    color: #0D0E17;
     @media all and (max-width: 500px) {
       font-size: 18px;
+      height: 44px;
     }
   }
 
   .button {
     display: block;
     position: absolute;
-    right: 0;
+    right: 57px;
     top: 0;
     width: $selectric-inner-height;
     height: $selectric-inner-height;
@@ -67,6 +69,10 @@ $selectric-font-size:       1.8rem !default;                                    
     font: 0/0 a;
     *font: 20px/#{$selectric-inner-height} Lucida Sans Unicode, Arial Unicode MS, Arial;
     padding: 0 15px;
+    @media all and (max-width: 500px) {
+      height: 48px;
+      width: 44px;
+    }
     &:after {
       content: " ";
       position: absolute;
@@ -75,10 +81,10 @@ $selectric-font-size:       1.8rem !default;                                    
       bottom: 0;
       left: 0;
       margin: auto;
-      border-right: 2px solid white;
-      border-bottom: 2px solid white;
-      width: 12px;
-      height: 12px;
+      border-right: 2px solid black;
+      border-bottom: 2px solid black;
+      width: 6px;
+      height: 6px;
       transform: rotate(45deg);
         background: transparent;
     }
@@ -96,7 +102,7 @@ $selectric-font-size:       1.8rem !default;                                    
 
     &:after {
       border-top-color: darken($selectric-secondary-color, 10%);
-        width: 12px;
+        width: 6px;
     }
   }
 }
@@ -106,12 +112,13 @@ $selectric-font-size:       1.8rem !default;                                    
 
   .selectric {
     border-color: darken($selectric-main-color, 10%);
-      border-radius: 10px 10px 0 0;
+      border-radius: 20px 20px 0 0;
   }
 
   .selectric-items {
     display: block;
-      border-radius: 0 0 10px 10px;
+      border-radius: 0 0 20px 20px;
+    overflow: hidden;
   }
 }
 

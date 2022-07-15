@@ -43,6 +43,7 @@ document.addEventListener("DOMContentLoaded", function () {
 })
 
 function applyFilters(e) {
+
     showLoader();
     e.preventDefault();
 

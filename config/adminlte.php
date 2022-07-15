@@ -234,60 +234,120 @@ return [
             'url'  => 'admin/blog',
             'can'  => 'manage-blog',
         ],
-        ['header' => 'ШАБЛОНЫ'],
+        ['header' => 'ЗАПИСИ'],
         [
-            'text'        => 'Мокапы',
+            'text'        => 'Блог',
 //            'url'         => 'admin/modules',
             'icon'        => '/img/admin/blog.svg',
 //            'label'       => 3,
             'label_color' => 'success',
             'submenu' => [
                 [
-                    'text' => 'Список мокапов ',
-                    'url'  => '/admin/modules/items/list/21',
+                    'text' => 'Список Записей ',
+                    'url'  => '/admin/modules/items/list/36',
                 ],
                 [
-                    'text' => 'Brand',
-                    'url'  => '/admin/taxonomy/items/list/1',
+                    'text' => 'Рубрики записей',
+                    'url'  => '/admin/taxonomy/items/list/16',
+                ],
+            ],
+        ],
+        [
+            'text'        => 'Трансляции',
+//            'url'         => 'admin/modules',
+            'icon'        => '/img/admin/video.svg',
+//            'label'       => 3,
+            'label_color' => 'success',
+            'submenu' => [
+                [
+                    'text' => 'Список трансляций ',
+                    'url'  => '/admin/modules/items/list/33',
                 ],
                 [
-                    'text' => 'Model',
-                    'url'  => '/admin/taxonomy/items/list/2',
-                ],
-                [
-                    'text' => 'Orientation',
-                    'url'  => '/admin/taxonomy/items/list/3',
-                ],
-                [
-                    'text' => 'Hand',
-                    'url'  => '/admin/taxonomy/items/list/4',
+                    'text' => 'Тип трансляции',
+                    'url'  => '/admin/taxonomy/items/list/14',
                 ],
             ],
 
         ],
         [
-            'text'        => 'Тарифные планы',
+            'text'        => 'Тренировки',
 //            'url'         => 'admin/modules',
-            'icon'        => '/img/admin/blog.svg',
+            'icon'        => '/img/admin/trenings.svg',
 //            'label'       => 3,
             'label_color' => 'success',
             'submenu' => [
                 [
-                    'text' => 'Список планов ',
-                    'url'  => '/admin/modules/items/list/23',
+                    'text' => 'Список тренировок ',
+                    'url'  => '/admin/modules/items/list/31',
                 ],
                 [
-                    'text' => 'Типы планов',
-                    'url'  => '/admin/taxonomy/items/list/6',
+                    'text' => 'Группы тренировок',
+                    'url'  => '/admin/taxonomy/items/list/13',
                 ],
             ],
 
         ],
+        [
+            'text'        => 'Тренера',
+//            'url'         => 'admin/modules',
+            'icon'        => '/img/admin/treners.svg',
+//            'label'       => 3,
+            'label_color' => 'success',
+            'submenu' => [
+                [
+                    'text' => 'Список тренеров',
+                    'url'  => '/admin/modules/items/list/35',
+                ],
+                [
+                    'text' => 'Группы тренеров',
+                    'url'  => '/admin/taxonomy/items/list/15',
+                ],
+            ],
+
+        ],
+        [
+            'text'        => 'Клиенты',
+//            'url'         => 'admin/modules',
+            'icon'        => '/img/admin/clients.svg',
+//            'label'       => 3,
+            'label_color' => 'success',
+            'submenu' => [
+                [
+                    'text' => 'Список клиентов ',
+                    'url'  => '/admin/modules/items/list/32',
+                ],
+                [
+                    'text' => 'Отзывы ',
+                    'url'  => '/admin/modules/items/list/34',
+                ],
+                [
+                    'text' => 'Комментарии ',
+                    'url'  => '/admin/comment',
+                ],
+            ],
+
+        ],
+        [
+            'text'        => 'Подписки',
+//            'url'         => 'admin/modules',
+            'icon'        => '/img/admin/subscribe.svg',
+//            'label'       => 3,
+            'label_color' => 'success',
+            'submenu' => [
+                [
+                    'text' => 'Виды подписок',
+                    'url'  => '/admin/modules/items/list/37',
+                ],
+            ],
+
+        ],
+
         ['header' => 'СТРУКТУРА'],
         [
             'text'        => 'Доступы',
 //            'url'         => 'admin/modules',
-            'icon'        => '/img/admin/users.svg',
+            'icon'        => '/img/admin/secure.svg',
 //            'label'       => 3,
             'label_color' => 'success',
             'submenu' => [
@@ -344,43 +404,43 @@ return [
         [
             'text'        => 'Модули',
             'url'         => 'admin/modules',
-            'icon'        => 'far fa-fw fa-address-card',
+            'icon'        => 'fa fa-tasks',
 //            'label'       => 3,
             'label_color' => 'success',
         ],
         [
             'text'        => 'Таксономии',
             'url'         => 'admin/taxonomy',
-            'icon'        => 'far fa-fw fa-address-card',
+            'icon'        => 'fa fa-bars',
 //            'label'       => 3,
             'label_color' => 'success',
         ],
         [
             'text'        => 'Виджеты',
             'url'         => 'admin/widget',
-            'icon'        => 'far fa-fw fa-address-card',
+            'icon'        => 'fa fa-bars',
 //            'label'       => 3,
             'label_color' => 'success',
         ],
         ['header' => 'ПАРАМЕТРЫ'],
         [
             'text'        => 'languages',
-            'url'         => 'admin/languages',
-            'icon'        => 'fas fa-language',
+            'url'         => 'admin/language',
+            'icon'        => 'fa fa-globe',
 //            'label'       => 3,
             'label_color' => 'success',
         ],
         [
             'text'        => 'Настройки',
             'url'         => 'admin/variables',
-            'icon'        => 'far fa-fw fa-address-card',
+            'icon'        => 'fas fa-cog',
 //            'label'       => 3,
             'label_color' => 'success',
         ],
         [
             'text'        => 'Контакты',
             'url'         => 'admin/contacts',
-            'icon'        => 'far fa-fw fa-address-card',
+            'icon'        => 'fas fa-cog',
 //            'label'       => 3,
             'label_color' => 'success',
         ],

@@ -35,21 +35,21 @@
 @endsection
 
 @section('content')
-<div class="row">
-  <div class="col-md-12 text-center">
-    <div class="error_number">
-      <small>ERROR</small><br>
-      {{ $error_number }}
-      <hr>
-    </div>
-    <div class="error_title text-muted">
-      @yield('title')
-    </div>
-    <div class="error_description text-muted">
-      <small>
-        @yield('description')
-     </small>
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <div class="error_number">
+        <small>ERROR</small><br>
+        {{ $error_number }}
+        <hr>
+      </div>
+      <div class="error_title text-muted">
+        @yield('title')
+      </div>
+      <div class="error_description text-muted">
+        <small>
+          @yield('description')
+        </small>
+      </div>
     </div>
   </div>
-</div>
 @endsection

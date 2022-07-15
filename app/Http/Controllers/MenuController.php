@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Menu;
 use App\Models\Menu_items;
-use App\Models\Pages;
 use Illuminate\Http\Request;
 
 class MenuController extends Controller
@@ -17,63 +16,64 @@ class MenuController extends Controller
     public function index()
     {
 
-        $pages = Pages::all();
-        $menu_items = Menu_items::all();
-
-        $mapped_menu = Menu::all()->mapWithKeys(function ($model) {
-            $key = $model->model .'-'. $model->model_id;
-
-            return [$key => $model];
-        });
-
-        $concated_items = $pages->concat($menu_items)->mapWithKeys(function ($model) use ($mapped_menu) {
-            $key = class_basename($model) .'-'. $model->id;
-
-            switch (class_basename($model)) {
-                case 'Pages':
-                    $title = $model->seo->title;
-                    $alias = $model->seo->alias;
-                    break;
-                case 'Menu_items':
-                    $title = $model->link_text;
-                    $alias = $model->alias;
-                    break;
-            }
-
-            if(isset($mapped_menu[$key])) {
-                $data = [
-                    'id' => $model->id,
-                    'class_name' => class_basename($model),
-                    'order' => $mapped_menu[$key]->order,
-                    'checked' => true,
-
-                ];
-            } else {
-                $data = [
-                    'id' => $model->id,
-                    'class_name' => class_basename($model),
-                    'order' => 999999,
-                    'checked' => false,
-                ];
-            }
-
-            $data['title'] = $title;
-            $data['alias'] = $alias;
-            $data['type'] = class_basename($model);
+//        $pages = Pages::all();
 
 
-//            $value = $mapped_menu[$key] ?? $model;
+//        $mapped_menu = Menu::all()->mapWithKeys(function ($model) {
+//            $key = $model->model .'-'. $model->model_id;
+//
+//            return [$key => $model];
+//        });
 
-            return [$key => $data];
-        });
-
-        $sorted_items = $concated_items->sort(function ($a, $b) {
-            return $a['order'] <=> $b['order'];
-        });
+//        $concated_items = $pages->concat($menu_items)->mapWithKeys(function ($model) use ($mapped_menu) {
+//            $key = class_basename($model) .'-'. $model->id;
+//
+//            switch (class_basename($model)) {
+//                case 'Pages':
+//                    $title = $model->seo->title;
+//                    $alias = $model->seo->alias;
+//                    break;
+//                case 'Menu_items':
+//                    $title = $model->link_text;
+//                    $alias = $model->alias;
+//                    break;
+//            }
+//
+//            if(isset($mapped_menu[$key])) {
+//                $data = [
+//                    'id' => $model->id,
+//                    'class_name' => class_basename($model),
+//                    'order' => $mapped_menu[$key]->order,
+//                    'checked' => true,
+//
+//                ];
+//            } else {
+//                $data = [
+//                    'id' => $model->id,
+//                    'class_name' => class_basename($model),
+//                    'order' => 999999,
+//                    'checked' => false,
+//                ];
+//            }
+//
+//            $data['title'] = $title;
+//            $data['alias'] = $alias;
+//            $data['type'] = class_basename($model);
+//
+//
+////            $value = $mapped_menu[$key] ?? $model;
+//
+//            return [$key => $data];
+//        });
+//
+//        $sorted_items = $concated_items->sort(function ($a, $b) {
+//            return $a['order'] <=> $b['order'];
+//        });
 //
 //dd($sorted_items);
+        $menu_items = Menu_items::all();
 
-        return view('admin.menu.index', compact('sorted_items'));
+        return view('admin.menu.index', compact('menu_items'));
     }
 
     /**

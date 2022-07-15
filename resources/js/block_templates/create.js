@@ -119,7 +119,6 @@ $(document).on('click', '.edit-setting', function (){
 })
 
 $(document).on('click', '.save-setting',  function () {
-    console.log(editor.get());
     $(`#selector_${this.dataset.u_id}`)[0].value = JSON.stringify(editor.get());
     $('#editorFormModal').modal('toggle');
 });

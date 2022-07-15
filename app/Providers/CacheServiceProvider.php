@@ -13,6 +13,7 @@ class CacheServiceProvider extends ServiceProvider
         Cache::rememberForever('languages', function () {
             return DB::table('languages')
                 ->select('id', 'iso')
+                ->where('enabled', true)
                 ->get()
                 ->map(function ($language) {
                     return [$language->iso => $language->id];

@@ -71,7 +71,7 @@
         enctype="multipart/form-data"
     >
         @csrf
-        @if($sorted_items->count() > 0)
+        @if($menu_items->count() > 0)
             <div class="card">
                 <div class="card-header border-transparent">
                     <h3 class="card-title"> @lang('menu.list') </h3>
@@ -99,7 +99,7 @@
                             </thead>
                             <tbody id="menu_list">
                             {{--                            @dd($models)--}}
-                            @foreach($sorted_items as $id => $model)
+                            @foreach($menu_items as $id => $model)
                                 @php
                                     //dd($model, $id)
                                 @endphp

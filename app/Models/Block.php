@@ -10,7 +10,49 @@ use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Cache;
 
+/**
+ * App\Models\Block
+ *
+ * @property int $id
+ * @property int $enabled
+ * @property int|null $order
+ * @property int|null $blockable_id
+ * @property string $blockable_type
+ * @property int|null $block_template_id
+ * @property int|null $admin_created_id
+ * @property int|null $admin_updated_id
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property-read Model|\Eloquent $blockable
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\BlockContent[] $contents
+ * @property-read int|null $contents_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\BlockTemplateRepeaterIteration[] $iterations
+ * @property-read int|null $iterations_count
+ * @property-read \App\Models\BlockTemplate|null $template
+ * @method static \Illuminate\Database\Eloquent\Builder|Block enabled()
+ * @method static \Illuminate\Database\Eloquent\Builder|Block newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Block newQuery()
+ * @method static \Illuminate\Database\Query\Builder|Block onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|Block query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Block whereAdminCreatedId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Block whereAdminUpdatedId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Block whereBlockTemplateId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Block whereBlockableId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Block whereBlockableType($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Block whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Block whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Block whereEnabled($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Block whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Block whereOrder($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Block whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|Block withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|Block withoutTrashed()
+ * @mixin \Eloquent
+ */
 class Block extends Model
 {
     use HasFactory, HasSystemFields, SoftDeletes;
@@ -69,14 +111,20 @@ class Block extends Model
             ->with('translations')
             ->get()
             ->mapWithKeys(function ($content) {
+//                dd($content);
                 return [$content->block_template_attribute_id => $content];
             });
+//        dd($contents);
 
         return $this
             ->template
             ->attrs
             ->mapWithKeys(function ($attr) use ($contents) {
-                $value = $contents[$attr->id]->translations[0] ?? $attr;
+//                dd($attr->id);
+//                dd($contents[$attr->id]->translations[0] ?? $attr);
+                $value = isset($contents[$attr->id])
+                    ? $contents[$attr->id]->mappedByLang()[Cache::get('languages')->get(App::getLocale())]
+                    : $attr;
 //                $value = $contents[$attr->id]->translations[0] ?? $attr;
 //                dd($contents);
 //                if(!$contents[$attr->id]) {
@@ -113,19 +161,29 @@ class Block extends Model
         return $this->morphMany(BlockTemplateRepeaterIteration::class, 'iterable')->with('iterations');
     }
 
-    public function groupedIterationsByRepeaterId($model)
+    public function localeIterations(): MorphMany
+    {
+        return $this
+            ->morphMany(BlockTemplateRepeaterIteration::class, 'iterable')
+            ->where('lang_id', Cache::get('languages')->get(App::getLocale()))
+            ->orderBy('order')
+            ->with('iterations');
+    }
+
+    public function groupedIterationsByRepeaterId($model, $language)
     {
         $groupedByRepeater = $model
             ->iterations()
+            ->where('lang_id', $language->id)
             ->orderBy('order')
-            ->with('contents.translate')
+            ->with('contents.translations')
             ->get()
             ->groupBy('block_template_repeater_id');
 
         foreach ($groupedByRepeater as $iterations) {
             foreach ($iterations as $iteration) {
                 if ($iteration->iterations()->count()) {
-                    $iteration['iterations'] = $this->groupedIterationsByRepeaterId($iteration);
+                    $iteration['iterations'] = $this->groupedIterationsByRepeaterId($iteration, $language);
                 }
             }
         }
@@ -140,16 +198,16 @@ class Block extends Model
     /**
      * @return Collection
      */
-    public function fillings(): Collection
+    public function fillings(Language $language): Collection
     {
         $fillings = collect([
             'contents' => $this
                 ->contents()
-                ->with('translate')
+                ->with('translations')
                 ->get(),
-            'iterations' => $this->groupedIterationsByRepeaterId($this)
+            'iterations' => $this->groupedIterationsByRepeaterId($this, $language)
         ]);
-
+//dd($fillings['contents']);
         return $fillings;
     }
 }

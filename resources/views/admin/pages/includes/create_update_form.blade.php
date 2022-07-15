@@ -31,9 +31,9 @@
             </select>
         </div>
     @elseif($model->id)
-        <label for="">У этой страницы не можеть быть другого родитильского раздела</label>
+        <label for=""> @lang('pages.this_page_cannot_have_root') </label>
     @else
-        <label for="">Корневая страница</label>
+        <label for=""> @lang('pages.root_page') </label>
     @endif
 
     {{--    <div class="form-group">--}}
@@ -55,18 +55,35 @@
     <div class="row">
         <div class="col-7 col-sm-9">
             <div class="tab-content" id="vert-tabs-right-tabContent">
-                <div class="custom-control custom-switch" style="display: inline-block; width: 30px; margin: 10px;">
-                    <input type="hidden" name="auth_only" value="0">
-                    <input
-                            name="auth_only"
-                            type="checkbox"
-                            id="auth_only"
-                            class="custom-control-input enable-block-switcher"
-                            value="1"
-                            @if($model->auth_only) checked @endif
-                    >
-                    <label class="custom-control-label" for="auth_only"> @lang('auth.auth_only') </label>
+                <div class="form-group">
+                    <div class="custom-control custom-switch" style="display: inline-block; width: 30px; margin: 10px;">
+                        <input type="hidden" name="auth_only" value="0">
+                        <input
+                                name="auth_only"
+                                type="checkbox"
+                                id="auth_only"
+                                class="custom-control-input enable-block-switcher"
+                                value="1"
+                                @if($model->auth_only) checked @endif
+                        >
+                        <label class="custom-control-label" for="auth_only"> @lang('auth.auth_only') </label>
+                    </div>
                 </div>
+                <div class="form-group">
+                    <div class="custom-control custom-switch" style="display: inline-block; width: 30px; margin: 10px;">
+                        <input type="hidden" name="is_main" value="0">
+                        <input
+                                name="is_main"
+                                type="checkbox"
+                                id="is_main"
+                                class="custom-control-input enable-block-switcher"
+                                value="1"
+                                @if($model->is_main) checked @endif
+                        >
+                        <label class="custom-control-label" for="is_main"> @lang('pages.is_main') </label>
+                    </div>
+                </div>
+
                 @foreach($languages as $count => $lang)
                     <div class="tab-pane fade @if(!$count) show active @endif" id="vert-tabs-right-{{ $lang->iso }}"
                          role="tabpanel" aria-labelledby="vert-tabs-right-{{ $lang->iso }}-tab">
@@ -89,9 +106,11 @@
                                 <ul class="nav nav-tabs" id="custom-tabs-two-tab" role="tablist">
                                     <li class="nav-item">
                                         <a class="nav-link active"
-                                           id="custom-tabs-two-home-tab"
-                                           data-toggle="pill" href="#custom-tabs-two-home"
-                                           role="tab" aria-controls="custom-tabs-two-home"
+                                           id="addition_tab_link"
+                                           data-toggle="pill"
+                                           href="#addition_tab_{{ $lang->iso }}"
+                                           role="tab"
+                                           aria-controls="custom-tabs-two-home"
                                            aria-selected="false"
                                         >
                                             @lang('additions.form_tab')
@@ -99,9 +118,9 @@
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link"
-                                           id="custom-tabs-two-profile-tab"
+                                           id="seo_tab_link"
                                            data-toggle="pill"
-                                           href="#custom-tabs-two-profile"
+                                           href="#seo_tab_{{ $lang->iso }}"
                                            role="tab"
                                            aria-controls="custom-tabs-two-profile"
                                            aria-selected="false"
@@ -113,11 +132,11 @@
                             </div>
                             <div class="card-body">
                                 <div class="tab-content" id="custom-tabs-two-tabContent">
-                                    <div class="tab-pane fade show active" id="custom-tabs-two-home" role="tabpanel"
+                                    <div class="tab-pane fade show active" id="addition_tab_{{ $lang->iso }}" role="tabpanel"
                                          aria-labelledby="custom-tabs-two-home-tab">
                                         @include('admin.additions.includes.create_update_form')
                                     </div>
-                                    <div class="tab-pane fade" id="custom-tabs-two-profile" role="tabpanel"
+                                    <div class="tab-pane fade" id="seo_tab_{{ $lang->iso }}" role="tabpanel"
                                          aria-labelledby="custom-tabs-two-profile-tab">
                                         @include('admin.seo.includes.create_update_form')
                                     </div>

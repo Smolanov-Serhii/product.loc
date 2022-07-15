@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\BlockTemplateRepeater;
+use App\Models\Language;
 use Illuminate\Http\JsonResponse;
 
 class BlockTemplateRepeaterController extends Controller
@@ -13,9 +14,14 @@ class BlockTemplateRepeaterController extends Controller
      * @param BlockTemplateRepeater $blockTemplateRepeater
      * @param string $parent_type
      * @param string $parent_id
+     * @param Language $language
      * @return JsonResponse
      */
-    public function show(BlockTemplateRepeater $blockTemplateRepeater, string $parent_type, string $parent_id)
+    public function show(
+        BlockTemplateRepeater $blockTemplateRepeater,
+        string $parent_type,
+        string $parent_id,
+        Language $language ): JsonResponse
     {
         $className = "App\Models\\$parent_type";
         $model = (new $className);
@@ -37,6 +43,7 @@ class BlockTemplateRepeaterController extends Controller
                 'parent_id' => $parent_id,
                 'parent_type' => $parent_type,
                 'parent_u_id' => $parent_u_id,
+                'language' => $language
             ])->render(),
             'u_id' => $u_id,
             'repeater_id' => $blockTemplateRepeater->id

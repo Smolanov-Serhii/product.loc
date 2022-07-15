@@ -1,3 +1,4 @@
+
 @if(count($breadcrumbs) > 0)
     <section class="content-header">
         <!-- Структура согласно AdminLTE -->

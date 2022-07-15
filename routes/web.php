@@ -27,6 +27,7 @@ use App\Http\Controllers\PermissionGroupController;
 use App\Http\Controllers\WidgetController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\Forum\TopicController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -37,23 +38,21 @@ use App\Http\Controllers\Forum\TopicController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-//Route::get('/', function () {
-//    return view('home');
-//});
-//
-
-
 Route::get('logout', [\App\Http\Controllers\Auth\LoginController::class, 'logout']);
 
 //Route::get('cabinet', [HomeController::class, 'index'])
 //    ->name('cabinet')
 //    ->middleware('auth');
 
+//Route::domain('{domain}')->group(function ($domain) {
+
+//    Route::get('user/{id}', function ($domain, $id) {
+//
+//    });
+//});
 
 Auth::routes();
 /** Admin Panel */
-//Route::name('admin.')->group(function () {
 Route::group([
     'prefix' => 'admin',
     'middleware' => 'auth',
@@ -104,7 +103,7 @@ Route::group([
     });
 
     Route::prefix('block_template_repeaters')->group(function () {
-        Route::get('{block_template_repeater}/{parent_type}/{parent_id}', [BlockTemplateRepeaterController::class, 'show'])->name('block_template_repeaters.template');
+        Route::get('{block_template_repeater}/{parent_type}/{parent_id}/{language}', [BlockTemplateRepeaterController::class, 'show'])->name('block_template_repeaters.template');
     });
 
     Route::prefix('block_template_repeater_iterations')->group(function () {
@@ -192,6 +191,7 @@ Route::group([
     Route::resource('widget', WidgetController::class)
         ->except(['show']);
 
+    Route::post('language/update_status/{language}', [LanguageController::class, 'updateStatus'])->name('language.update_status');
     Route::resource('language', LanguageController::class)
         ->except(['show']);
 
@@ -202,10 +202,6 @@ Route::group([
     Route::prefix('module_repeaters')->group(function () {
         Route::get('{moduleRepeater}/{parent_iteration_id}', [ModuleRepeaterController::class, 'show'])->name('module_repeaters.template');
     });
-
-//    Route::prefix('languages')->group(function () {
-//        Route::get('', [LanguageController::class, 'index'])->name('languages.list');
-//    });
 
     Route::prefix('upload')->group(function () {
         Route::post('image', [UploadController::class, 'image'])->name('upload.image');
@@ -235,103 +231,29 @@ Route::group([
 //        Route::get('{alias}', [App\Http\Controllers\MouduleItemController::class, 'item'])->name('programs.item');
 //    });
 //
-//    Route::prefix('treners')->group(function () {
-////    Route::get('', [App\Http\Controllers\MouduleItemController::class, 'show'])->name('client.programs.items.list');
-//        Route::get('{alias}', [App\Http\Controllers\MouduleItemController::class, 'item'])->name('treners.item');
-//    });
-//
-//    Route::prefix('news')->group(function () {
-////    Route::get('', [App\Http\Controllers\MouduleItemController::class, 'show'])->name('client.programs.items.list');
-//        Route::get('{alias}', [App\Http\Controllers\MouduleItemController::class, 'item'])->name('news.item');
-//    });
-
-//Route::group([
-//    'prefix' => '{lang?}',
-//    'where' => ['lang' => '[a-zA-Z]{2}'],
-//    'middleware' => ['locale']
-//    ], function () {
-//        Route::get('{alias?}', [\PageController::class, 'show']);
-//    });
 });
 
 Route::prefix('topic')->group(function () {
     Route::get('', [TopicController::class, 'index'])->name('client.topic.index');
 });
-Route::get('search', [SearchController::class, 'index'])->name('client.search');
+Route::get('search', [SearchController::class, 'index'])->name('client.search')->middleware(['locale', 'variables']);
 Route::get('module_items/filter/{params?}', [ModuleItemController::class, 'filter'])->name('client.module_items.filter');
-//Route::get('filter');
-Route::get('{locale?}/{alias?}', [PageController::class, 'show'])
-    ->where('locale', '[a-z]{2}')
-    ->middleware('locale');
-//
-Route::get('/{alias?}', [PageController::class, 'show'])->name('client.page.show')->middleware('locale');
 
+Route::group([
+    'prefix' => '{lang?}', // TODO dep inject
+    'where' => ['lang' => '[a-zA-Z]{2,3}'],
+    'middleware' => ['locale', 'variables']
+], function () {
+//    foreach (\App\Models\Module::all() as $module) {
+//        Route::prefix($module->name)->group(function () use ($module) {
+//            Route::get('{alias}', [App\Http\Controllers\ModuleItemController::class, 'item'])->name("{$module->name}.item");
+//        });
+//    }
+//    Route::prefix('landings')->group(function (){
+//    Route::get('/', [ModuleItemController::class, 'site']);
+//    });
+    Route::get('{alias?}', [PageController::class, 'show'])->name('client.page.show');
+});
+Route::get('{alias?}', [PageController::class, 'show'])->name('client.page.show')->middleware(['locale', 'variables']);
 Route::get('/comment/create/{comment}', [CommentController::class, 'create'])->name('client.comment.create')->middleware('auth');
 Route::post('/comment/create', [CommentController::class, 'store'])->name('client.comment.store')->middleware('auth');
-
-//Route::name('')->group(function () {
-//    Route::group([
-//        'middleware' => 'auth',
-//    ], function () {
-//        Route::get('{locale?}/{alias?}', [PageController::class, 'show'])
-//            ->where('locale', '[a-z]{2}')
-//            ->middleware('locale');
-////
-//        Route::get('/{alias?}', [PageController::class, 'show'])->name('page.show')->middleware('locale');
-//    });
-//});
-//dd(2);
-
-//Route::prefix('mail')->group(function () {
-//    Route::post('send', [MailController::class, 'send'])->name('mail.send');
-//});
-//
-//Route::prefix('courses')->group(function () {
-//    Route::get('{alias}', [MouduleItemController::class, 'item'])->name('courses.item');
-//});
-//
-//Route::prefix('blog')->group(function () {
-//    Route::get('{alias}', [MouduleItemController::class, 'item'])->name('blog.item');
-//});
-//
-//Route::prefix('documents')->group(function () {
-//    Route::get('{alias}', [MouduleItemController::class, 'item'])->name('documents.item');
-//});
-//
-//Route::prefix('intelligences')->group(function () {
-//    Route::get('{alias}', [MouduleItemController::class, 'item'])->name('intelligences.item');
-//});
-//
-//Route::prefix('gosdoc')->group(function () {
-//    Route::get('{alias}', [MouduleItemController::class, 'item'])->name('gosdoc.item');
-//});
-//
-//Route::get('search', [SearchController::class, 'index'])->name('search');
-
-//Route::group([
-//    'prefix' => '{lang?}',
-//    'where' => ['lang' => '[a-zA-Z]{2}'],
-//    'middleware' => ['locale']
-//    ], function () {
-//        Route::get('{alias?}', [\PageController::class, 'show']);
-//    });
-
-
-//Route::get('{locale?}/{alias?}', [PageController::class, 'show'])
-//    ->where('locale', '[a-z]{2}')
-//    ->middleware('locale');
-//Route::get('/{alias?}', [PageController::class, 'show'])->name('page.show')->middleware('locale');
-
-
-
-//Route::get('/{alias?}')->middleware('locale');
-//Route::group([
-//    'prefix' => '{alias}',
-////    'where' => ['lang' => '[a-zA-Z]{2}'],
-//], function () {
-//    Route::get
-//});
-
-//Auth::routes();
-
-//Route::get('/home', [HomeController::class, 'index'])->name('home');

@@ -319,7 +319,6 @@
                 </div>
             </div>
             <script>
-                {{--                var selector_{{ $attribute->id }} = {!! json_encode($attribute->setting->properties)  !!}--}}
                 var selector_{{ $attribute->id }} = {!! $attribute->setting->properties !!}
             </script>
             @break
@@ -400,6 +399,52 @@
                 <div class="input-group-append">
                     <button data-id="{{ $attribute->id }}" class="btn btn-danger remove-input" type="button"
                             style="z-index:1">Удалить
+                    </button>
+                </div>
+            </div>
+            @break
+
+            @case(10)
+            <div class="input-group mb-3 field-icon" id="">
+                <img
+                        id="image_{{ $attribute->id }}"
+                        src="{{ '/uploads/block_template_attributes/' . $attribute->default_value }}"
+                        style="width:20%;"
+                        class="img-fluid pad"
+                        alt="Preview">
+                <input
+                        name="old_attribute[{{ $attribute->id }}][key]"
+                        type="text"
+                        class="form-control"
+                        id="key"
+                        placeholder="{{ __('block_template_attributes.key') }}"
+                        value="{{ $attribute->key ?? old('key') }}"
+                >
+                <div class="custom-file">
+                    <input
+                            name="old_attribute[{{ $attribute->id }}][name]"
+                            type="text"
+                            class="form-control"
+                            placeholder="{{ __('block_template_attributes.name') }}"
+                            value="{{ $attribute->name ?? old('name') }}"
+                    >
+                </div>
+                <div class="custom-file">
+                    <input
+                            data-id="{{ $attribute->id }}"
+                            name="old_attribute[{{ $attribute->id }}][default_value]"
+                            type="file"
+                            class="custom-file-input input image-input"
+                    >
+                    <label class="custom-file-label" for="exampleInputFile"> @lang('system.select icon') </label>
+                </div>
+                <div class="input-group-append">
+                    <button
+                            data-id="{{ $attribute->id }}"
+                            class="btn btn-danger remove-input"
+                            type="button"
+                            style="z-index:1"
+                    >Удалить
                     </button>
                 </div>
             </div>

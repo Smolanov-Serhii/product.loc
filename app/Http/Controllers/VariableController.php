@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Language;
 use App\Models\Variable;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class VariableController extends Controller
 {
     private static $section = 'general';
+
     /**
      * Display a listing of the resource.
      * @param Variable $var
@@ -35,7 +38,7 @@ class VariableController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -45,17 +48,21 @@ class VariableController extends Controller
         $data['type'] = array_flip(Variable::TYPE_LIST)[$data['type']];
         $data['section'] = $this::$section;
 
-        if($data['type'] == 0) {
-            $imageURL = $data['value']->store('contents');
-            $path_ar = explode('/', $imageURL);
-            $data['value'] = end($path_ar);
-        }
-
         $var = Variable::create($data);
-        $var->translations()->create([
-           'lang_id' => 3,
-            'value' => $data['value'],
-        ]);
+
+        foreach ($data['value'] as $iso => $value) {
+            if ($data['type'] == 0) {
+                $imageURL = $value->store('contents');
+                $path_ar = explode('/', $imageURL);
+                $value = end($path_ar);
+            }
+
+
+            $var->translations()->create([
+                'lang_id' => Cache::get('languages')->get($iso),
+                'value' => $value,
+            ]);
+        }
 
         return redirect(route('admin.variables.list'));
     }
@@ -63,7 +70,7 @@ class VariableController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Variable  $variable
+     * @param \App\Models\Variable $variable
      * @return \Illuminate\Http\Response
      */
     public function edit(Variable $variable)
@@ -74,8 +81,8 @@ class VariableController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Variable  $variable
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Models\Variable $variable
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Variable $variable)
@@ -87,32 +94,44 @@ class VariableController extends Controller
 
         $variable->update($data);
 
-        if( $data['value'] && $data['type'] == 0 ) {
-            $imageURL = $data['value']->store('variables');
-            $path_ar = explode('/', $imageURL);
-            $data['value'] = end($path_ar);
+        foreach ($data['value'] as $iso => $value) {
+            if ($value && $data['type'] == 0) {
+                $imageURL = $value->store('variables');
+                $path_ar = explode('/', $imageURL);
+                $value = end($path_ar);
+            }
+
+            if ($value) {
+                $translation = $variable
+                    ->translations()
+                    ->where('lang_id', Cache::get('languages')->get($iso))
+                    ->first();
+
+                if($translation) {
+                    $translation->update([
+                        'value' => $value,
+                    ]);
+                } else {
+                    $variable->translations()->create([
+                        'lang_id' => Cache::get('languages')->get($iso),
+                        'value' => $value,
+                    ]);
+                }
+            }
         }
 
-
-        if($data['value']) {
-            $variable->translate()->update([
-                'lang_id' => 3,
-                'value' => $data['value'],
-            ]);
-        }
-
-        return redirect(route('admin.variables.list',['groupBy' => 'general']));
+        return redirect(route('admin.variables.list', ['groupBy' => 'general']));
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Variable  $variable
+     * @param \App\Models\Variable $variable
      * @return \Illuminate\Http\Response
      */
     public function destroy(Variable $variable)
     {
-        if($variable->delete()){
+        if ($variable->delete()) {
             return redirect()->route('admin.variables.list');
         }
 

@@ -5,6 +5,9 @@
 }
 #contentForm{
     padding: 1rem;
+    .row.iterations{
+        width: 100%;
+    }
     .row{
         padding: 1rem;
         > div{
@@ -12,6 +15,36 @@
             padding: 20px;
         }
 
+    }
+    .hide, .move{
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 1rem;
+        float: none;
+    }
+    .tab-content{
+        .tab-pane{
+            .iterations{
+                > .saved-iteration, > .new-iteration{
+                    display: flex;
+                    flex-wrap: wrap;
+                    justify-content: space-between;
+                    .iteration-buttons{
+                        width: 100%;
+                        display: flex;
+                        flex-wrap: nowrap;
+                    }
+                    .form-group{
+                        flex: 1;
+                        margin-right: 1rem;
+                        &:last-child{
+                            margin-right: 0;
+                        }
+                    }
+                }
+            }
+        }
     }
 }
 .modal-header{
@@ -111,6 +144,25 @@
 .card-body{
     > .add-iteration{
         width: 100%;
+    }
+    > .tab-content{
+        .tab-pane{
+            > .iterations{
+                display: flex;
+                flex-wrap: wrap;
+                > div{
+                    width: 100%;
+                    .iterations{
+                        > div{
+                            width: 100%;
+                            .field-input{
+                              width: 100%;
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }
 .form-group.field-image, .form-group .input-group{

@@ -14,6 +14,49 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\App;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
 
+/**
+ * App\Models\ModuleItem
+ *
+ * @property int $id
+ * @property int|null $module_id
+ * @property string|null $excerpt
+ * @property int|null $admin_created_id
+ * @property int|null $admin_updated_id
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Block[] $blocks
+ * @property-read int|null $blocks_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Comment[] $comments
+ * @property-read int|null $comments_count
+ * @property-read mixed $properties
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\ModuleRepeaterIteration[] $iterable
+ * @property-read int|null $iterable_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\ModuleRepeaterIteration[] $iterations
+ * @property-read int|null $iterations_count
+ * @property-read \App\Models\Module|null $module
+ * @property-read \Illuminate\Database\Eloquent\Collection|ModuleItem[] $module_items
+ * @property-read int|null $module_items_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\ModuleItemProperty[] $props
+ * @property-read int|null $props_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\TaxonomyItem[] $taxonomy_items
+ * @property-read int|null $taxonomy_items_count
+ * @method static \Illuminate\Database\Eloquent\Builder|ModuleItem newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|ModuleItem newQuery()
+ * @method static \Illuminate\Database\Query\Builder|ModuleItem onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|ModuleItem query()
+ * @method static \Illuminate\Database\Eloquent\Builder|ModuleItem whereAdminCreatedId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ModuleItem whereAdminUpdatedId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ModuleItem whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ModuleItem whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ModuleItem whereExcerpt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ModuleItem whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ModuleItem whereModuleId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ModuleItem whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|ModuleItem withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|ModuleItem withoutTrashed()
+ * @mixin \Eloquent
+ */
 class ModuleItem extends Model
 {
     use HasFactory, HasSystemFields, SoftDeletes, HasSoftDeletedRelation, HasComments;

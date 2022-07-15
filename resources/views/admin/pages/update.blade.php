@@ -27,6 +27,10 @@ use Illuminate\Support\ViewErrorBag;
 @endsection
 
 @section('content')
+{{--    TODO use for tabs --}}
+{{--    @error('seo.*.alias')--}}
+{{--    33333333333--}}
+{{--    @enderror--}}
     @if ($errors->any())
         <div class="alert alert-danger">
             <ul>

@@ -1,0 +1,8 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Group 2">
+<rect id="Rectangle" width="64" height="64" rx="26" fill="#7F4BDC"/>
+<g id="Group">
+<path id="Shape" fill-rule="evenodd" clip-rule="evenodd" d="M23 23H38V27H22V24C22 23.4477 22.4477 23 23 23ZM22 29H41C41.5523 29 42 29.4477 42 30V40C42 40.5523 41.5523 41 41 41H23C22.4477 41 22 40.5523 22 40V29ZM35 36V34H38V36H35Z" fill="white"/>
+</g>
+</g>
+</svg>

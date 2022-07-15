@@ -3,8 +3,13 @@ const { token } = require('../app.js')
 
 $(document).on('change', '#type', function (){
     if(this.value != '-1') {
-
-        $('.variable-value')[0].innerHTML = $(`#option_${this.value}`)[0].outerHTML;
+        // console.log($('.variable-value'));
+        var selector = this;
+        $('.variable-value').each(function (element) {
+            $(`#option_${selector.value}`).children()[0].name = `value[${this.dataset.iso}]`
+            this.innerHTML = $(`#option_${selector.value}`)[0].outerHTML;
+        });
+        // $('.variable-value')[0].innerHTML = $(`#option_${this.value}`)[0].outerHTML;
         var current_element_group = $('.variable-value').children();
         current_element_group.show()
         var input = current_element_group.children();

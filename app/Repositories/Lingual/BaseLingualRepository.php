@@ -25,13 +25,16 @@ class BaseLingualRepository
         foreach ($data as $langIso => $translate) {
             $attributes = $translate;
             $attributes['lang_id'] = Cache::get('languages')->get($langIso);
-            $attributes['thumbnail'] = $this
-                ->imageUploader
-                ->uploadImage(
-                    config('thumbnail.uploadPathForRepository.'.class_basename($this)),
-                    Arr::get($attributes, 'thumbnail'),
-                    config('thumbnail.attributes.admin'),
-                );
+
+            if(isset($attributes['thumbnail'])) {
+                $attributes['thumbnail'] = $this
+                    ->imageUploader
+                    ->uploadImage(
+                        config('thumbnail.uploadPathForRepository.'.class_basename($this)),
+                        Arr::get($attributes, 'thumbnail'),
+                        config('thumbnail.attributes.admin'),
+                    );
+            }
             $translations[] = $attributes;
         }
 
