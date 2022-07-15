@@ -11,7 +11,7 @@
                 <li class="mobile-menu__item @if($page->seo->alias == 'schedule'){{'active'}}@endif"><a href="{{ url('/schedule') }}" class="mobile-menu__link">Расписание</a></li>
                 <li class="mobile-menu__item @if($page->seo->alias == 'reviews'){{'active'}}@endif"><a href="{{ url('/reviews') }}" class="mobile-menu__link">Отзывы</a></li>
                 <li class="mobile-menu__item @if($page->seo->alias == 'blog'){{'active'}}@endif"><a href="{{ url('/blog') }}" class="mobile-menu__link">Блог</a></li>
-                <li class="mobile-menu__item @if($page->seo->alias == 'subscriptions'){{'active'}}@endif"><a href="{{ url('/subscriptions') }}" class="mobile-menu__link">Подписки</a></li>
+                <li class="mobile-menu__item @if($page->seo->alias == 'questions'){{'active'}}@endif"><a href="{{ url('/questions') }}" class="mobile-menu__link">FAQ</a></li>
             </ul>
         </nav>
         <div class="header__personal">

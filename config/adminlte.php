@@ -342,6 +342,20 @@ return [
             ],
 
         ],
+        [
+            'text'        => 'FAQ',
+//            'url'         => 'admin/modules',
+            'icon'        => '/img/admin/faq.svg',
+//            'label'       => 3,
+            'label_color' => 'success',
+            'submenu' => [
+                [
+                    'text' => 'Записи',
+                    'url'  => '/admin/modules/items/list/38',
+                ],
+            ],
+
+        ],
 
         ['header' => 'СТРУКТУРА'],
         [

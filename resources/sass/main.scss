@@ -7,12 +7,22 @@
 @import "aos";
 @import "preloader";
 @import "breadcrumbs";
+@import "fonts";
+
 @mixin opensans {
   font-family: 'Open Sans', sans-serif;
 }
 
 @mixin oswald {
   font-family: 'Oswald', sans-serif;
+}
+
+@mixin opensans-condensed {
+  font-family: 'opensans-condensed', sans-serif;
+}
+
+@mixin transition {
+  transition: ease-in 0.3s;
 }
 
 // GENERAL DOCUMENT STYLES
@@ -25,6 +35,9 @@ $fon: $basefont / 10;
   font-feature-settings: 'pnum' on, 'lnum' on;
 }
 body{
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
   &::-webkit-scrollbar {
     width: 4px;
   }
@@ -49,6 +62,7 @@ body{
 }
 #main{
   overflow: hidden;
+  flex: 1;
 }
 img{
   max-width: 100%;
@@ -4063,6 +4077,262 @@ html{
       display: inline-flex;
       align-items: center;
       justify-content: center;
+    }
+  }
+}
+.subscriptions{
+  margin-bottom: 100px;
+  &__container{
+
+  }
+  &__title{
+    margin-bottom: 12px;
+  }
+  &__subtitle{
+    @include opensans;
+    font-weight: 300;
+    font-size: 24px;
+    line-height: 32px;
+    color: #181818;
+  }
+  &__list{
+    margin-top: 83px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  &__item{
+    width: calc(25% - 30px);
+    position: relative;
+    padding: 20px;
+    background: #FDFDFD;
+    box-shadow: 0px 4px 20px rgba(173, 173, 173, 0.43);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    cursor: pointer;
+    @include transition;
+    &:hover, &.current-plan{
+      background-color: #47869A;
+      box-shadow: 0px 4px 20px rgba(173, 173, 173, 0.43);
+      .subscriptions__item-design{
+        opacity: 0;
+      }
+      .subscriptions__item-digit{
+        color: #6EA5B7;
+      }
+      .subscriptions__item-period{
+        color: #FFFFFF;
+      }
+      .subscriptions__item-price{
+        color: #FFFFFF;
+        svg{
+          path{
+            fill: #FFFFFF;
+          }
+        }
+      }
+      .subscriptions__item-economi{
+        color: #FFFFFF;
+      }
+    }
+    &-design{
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      height: 100%;
+      @include transition;
+      img{
+        height: 100%;
+        width: auto;
+      }
+    }
+    &-digit{
+      position: absolute;
+      font-weight: 400;
+      font-size: 150px;
+      line-height: 32px;
+      color: #F0F0F0;
+      right: 30px;
+      top: 36px;
+      @include transition;
+      @include opensans-condensed;
+    }
+    &-title{
+      background-color: #0E6D8B;
+      font-weight: 700;
+      font-size: 17px;
+      line-height: 23px;
+      color: #FFFFFF;
+      @include opensans;
+      min-width: 205px;
+      text-align: center;
+      display: inline-block;
+      padding: 11px;
+      transform: translateX(-20px);
+      margin-bottom: 44px;
+      position: relative;
+    }
+    &-period{
+      @include opensans-condensed;
+      font-weight: 400;
+      font-size: 17px;
+      line-height: 100%;
+      color: #181818;
+      position: relative;
+      @include transition;
+    }
+    &-price{
+      @include opensans;
+      font-weight: 700;
+      font-size: 60px;
+      line-height: 55px;
+      color: #0E6D8B;
+      position: relative;
+      @include transition;
+      span{
+        @include opensans-condensed;
+        font-weight: 400;
+        @include transition;
+      }
+      svg{
+        path{
+          @include transition;
+        }
+      }
+    }
+    &-old{
+      margin-top: 10px;
+      @include opensans;
+      font-weight: 300;
+      font-size: 20px;
+      line-height: 23px;
+      text-decoration-line: line-through;
+      color: #BFBFBF;
+      @include transition;
+    }
+    &-economi{
+      @include opensans;
+      flex: 1;
+      align-items: flex-end;
+      display: flex;
+      margin-top: 34px;
+      font-weight: 300;
+      font-size: 17px;
+      line-height: 23px;
+      color: #181818;
+      @include transition;
+    }
+  }
+}
+.faq{
+  margin-bottom: 100px;
+  &__container{
+
+  }
+  &_title{
+
+  }
+  &__main{
+    display: flex;
+    justify-content: space-between;
+    &-tabs{
+      max-width: 470px;
+      width: 100%;
+    }
+    &-tab{
+      background: #FFFFFF;
+      box-shadow: 0px 4px 20px rgba(173, 173, 173, 0.25);
+      font-weight: 300;
+      font-size: 24px;
+      line-height: 100%;
+      color: #181818;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      cursor: pointer;
+      padding: 14px 19px 19px 19px;
+      margin-bottom: 20px;
+      @include transition;
+      &:hover, &.active{
+        background-color: #0E6D8B;
+        color: white;
+      }
+      &:last-child{
+        margin-bottom: 0;
+      }
+    }
+    &-contents{
+      width: calc(100% - 540px);
+
+    }
+    &-content{
+      display: none;
+      width: 100%;
+      &.active{
+        display: flex;
+      }
+    }
+  }
+}
+.faq-block1{
+  width: 100%;
+  &__container{
+
+  }
+  &__item{
+    margin-bottom: 20px;
+    &.active{
+      .faq-block1__item-header{
+        svg{
+          transform: rotate(90deg);
+        }
+      }
+    }
+    &:last-child{
+      margin-bottom: 0;
+    }
+    &-header{
+      background: #FFFFFF;
+      box-shadow: 0px 4px 20px rgba(173, 173, 173, 0.25);
+      padding: 19px 80px 19px 20px;
+      position: relative;
+      font-weight: 300;
+      font-size: 18px;
+      line-height: 100%;
+      align-items: center;
+      color: #181818;
+      svg{
+        position: absolute;
+        top: 26px;
+        right: 20px;
+        cursor: pointer;
+        transform: rotate(0);
+      }
+      &:before{
+        content: "";
+        width: 15px;
+        height: 15px;
+        display: inline-block;
+        background: #0E6D8B;
+        margin-right: 35px;
+      }
+    }
+    &-content{
+      padding: 30px;
+      background: #FFFFFF;
+      box-shadow: 0px 4px 20px rgba(173, 173, 173, 0.25);
+      p, span{
+        @include opensans;
+        font-weight: 300;
+        font-size: 17px;
+        line-height: 23px;
+        color: #181818;
+        &:last-child{
+          margin-bottom: 0;
+        }
+      }
     }
   }
 }

@@ -20,7 +20,7 @@
 <main class="main" id="main">
     <article>
     {{--content section--}}
-        @if($page->seo->alias == "user-login" || $page->seo->alias == "user-register" || $page->seo->alias == "courses" || $page->seo->alias == "blog" || $page->seo->alias == "knowledge"  || $page->seo->alias == "career")
+        @if($page->seo->alias == "user-login" || $page->seo->alias == "user-register")
 
         @else
             @yield('breadcrumbs')
