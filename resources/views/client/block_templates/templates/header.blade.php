@@ -64,16 +64,16 @@ $contents = $block->mappedByKey();
                     <div class="right">
                         <div class="city">
                             <div class="up">
-                                @if($contents['telegram']['value'])
+                                @if($var['telegram'])
                                     <img style="width: 25px;margin-right: 0px;cursor: pointer;"
-                                         onclick="window.location.replace(&#39;tg://resolve?domain=copylsd1&#39;)"
-                                         href="tg://resolve?domain={{ $contents['telegram']['value'] ?? '' }}" src="{{ url('/img/header/telegram-1.png') }}"
+                                         onclick='window.open("https://t.me/{{ $var['telegram'] ?? '' }}", "_blank")'
+                                         href="https://t.me/{{ $var['telegram'] ?? '' }}" src="{{ url('/img/header/telegram-1.png') }}"
                                          alt="telegram">
                                 @endif
-                                @if($contents['viber']['value'])
+                                @if($var['viber'])
                                     <img style="width: 25px;margin-right: 0px;cursor: pointer;"
-                                         onclick="window.location.replace(&#39;viber://chat?number=%2B380635351718&#39;)"
-                                         href="viber://chat?number=%2B{{ $contents['viber']['value'] ?? '' }}"
+                                         onclick="window.location.replace(&#39;viber://chat?number=%2B{{ $var['viber'] ?? '' }}&#39;)"
+                                         href="viber://chat?number=%2B{{ $var['viber'] ?? '' }}"
                                          src="{{ url('/img/header/viber-1.png') }}" alt="viber">
                                 @endif
                                 <span><a class="header-phone" href="tel:{{ $contents['phone']['value'] ?? '' }}">{{ $contents['phone']['value'] ?? '' }}</a> </span>
@@ -84,13 +84,17 @@ $contents = $block->mappedByKey();
                                 <div class="city_phone">
                                     <div class="up_phone">
                                         @if($page->seo->alias != 'main')
-                                            <a href="{{ local_url('/main')}}">{{ $var['kyiv'] ?? ''}}</a>
+                                            <a href="{{ local_url('/')}}">{{ $var['kyiv'] ?? ''}}</a>
                                         @endif
-                                        @foreach($main_page->childTree as $item)
-                                            @if($item->seo->alias != '404' && $item->seo->alias != $page->seo->alias)
-                                                <a href="{{ local_url($item->seo->alias) }}">{{ $item->addition->title }}</a>
-                                            @endif
+                                        @foreach(\App\Models\Menu::where('title', 'city-menu')->first()->getTree() as $item)
+                                            <a href="{{local_url(''.$item->slug)}}"> {!! $item->title !!}</a>
                                         @endforeach
+                                            @foreach($block->localeIterations as $iteration)
+                                                @php
+                                                    $properties = $iteration->mappedByKey();
+                                                @endphp
+                                                <a href="{{ local_url('/') . $properties['menu-lnk']['value'] ?? ''}}">{!!  $properties['menu-item']['value'] ?? '' !!}</a>
+                                            @endforeach
                                     </div>
                                 </div>
                             </div>

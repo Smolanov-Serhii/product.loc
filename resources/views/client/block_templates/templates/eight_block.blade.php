@@ -28,8 +28,15 @@ $contents = $block->mappedByKey();
                                     </div>
                                     <div class="bottom">
                                         <span>{{ $properties['price']['value'] ?? ''}}</span>
-                                        <button class="btn" data-src="#popup-zakaz" data-fancybox=""><span>
-                                       Заказать												</span></button>
+                                        @if($properties['lnk']['value'])
+                                            <button class="btn" onclick='window.open("http://{{ $properties['lnk']['value'] ?? ''}}", "_blank")'>
+                                                <span>{{ $properties['button-name']['value'] ?? "Заказать" }}</span>
+                                            </button>
+                                        @else
+                                            <button class="btn" data-src="#popup-zakaz" data-fancybox="">
+                                                <span>{{ $properties['button-name']['value'] ?? "Заказать" }}</span>
+                                            </button>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
