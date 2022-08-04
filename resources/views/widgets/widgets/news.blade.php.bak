@@ -1,0 +1,2 @@
+<h1>News widget</h1>
+{{--{{ print_r($data) }}--}}

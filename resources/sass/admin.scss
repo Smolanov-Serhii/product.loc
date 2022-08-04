@@ -3,16 +3,63 @@
     overflow: hidden;
     //top: 5vh;
 }
+.menu.ui-sortable{
+    li{
+        list-style: none;
+        .menu-item-bar{
+            width: 100%;
+        }
+    }
+}
 #contentForm{
     padding: 1rem;
     .row.iterations{
-        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
     }
     .row{
         padding: 1rem;
-        > div{
+        > .col-3{
             min-width: 30%;
             padding: 20px;
+            &.column{
+                flex-direction: column;
+                display: flex;
+                .iteration-buttons{
+                    width: 100%;
+                }
+                .form-group{
+                    width: 100%;
+                }
+            }
+        }
+        > .col-2{
+            min-width: 50%;
+            padding: 20px;
+            &.column{
+                flex-direction: column;
+                display: flex;
+                .iteration-buttons{
+                    width: 100%;
+                }
+                .form-group{
+                    width: 100%;
+                }
+            }
+        }
+        > .col-4{
+            min-width: 25%;
+            padding: 20px;
+            &.column{
+                flex-direction: column;
+                display: flex;
+                .iteration-buttons{
+                    width: 100%;
+                }
+                .form-group{
+                    width: 100%;
+                }
+            }
         }
 
     }
@@ -368,4 +415,60 @@ th.clicked{
         }
     }
 }
-
+.menu-all-items{
+    font-size: 1.3rem;
+}
+.menu-buttons{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    p{
+        margin-bottom: 0;
+    }
+}
+.delete-menu{
+    border-radius: 0.2rem;
+    padding: 0.25rem 0.5rem;
+    font-size: .875rem;
+    line-height: 1.5;
+    font-weight: 400;
+    color: #fff;
+    background-color: #dc3545;
+    border-color: #dc3545;
+    box-shadow: none;
+    display: inline-block;
+    &:hover{
+        color: white;
+    }
+}
+.panel-group, .menu.ui-sortable{
+    padding: 1rem;
+    border: 1px solid #c3c4c7;
+    box-shadow: 0 1px 1px rgb(0 0 0 / 4%);
+    .panel.panel-default{
+        margin-bottom: 1rem;
+        border: 1px solid #c3c4c7;
+        input{
+            margin-right: 1rem;
+        }
+        .panel-heading{
+            padding: 1rem;
+            line-height: 1.5;
+            color: #1d2327;
+            background-color: #132238 ;
+            border: 1px solid #c3c4c7;
+            a{
+                color: white;
+            }
+        }
+        .panel-collapse{
+            .item-list-body{
+                padding: 1rem;
+            }
+        }
+        .item-list-body{
+            background-color: #FFFFFF;
+            max-height: 240px;
+        }
+    }
+}

@@ -2,6 +2,7 @@
 @section('adminlte_css')
     @parent
     @include('admin.inc.css')
+    <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
 @stop
 @section('body')
     <div class="wrapper">
@@ -93,3 +94,4 @@
 @section('adminlte_js')
     @include('admin.inc.js')
 @stop
+

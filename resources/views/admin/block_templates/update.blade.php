@@ -121,4 +121,6 @@
 @section('adminlte_css')
     <link href="{{ asset('/vendor/laravel-admin-ext/json-editor/jsoneditor-6.2.1/dist/jsoneditor.min.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('/css/summernote.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
 @endsection
+

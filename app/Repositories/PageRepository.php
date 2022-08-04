@@ -32,6 +32,12 @@ class PageRepository
             ->get();
     }
 
+    public function all($notId = null)
+    {
+        return Page::where('id', '<>', $notId)
+            ->get();
+    }
+
     /**
      * @param array $input
      * @return Page

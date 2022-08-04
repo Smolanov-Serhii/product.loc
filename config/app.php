@@ -93,7 +93,7 @@ return [
     |
     */
 
-    'fallback_locale' => 'ru',
+    'fallback_locale' => 'uk',
 
     /*
     |--------------------------------------------------------------------------
@@ -190,6 +190,7 @@ return [
         JeroenNoten\LaravelAdminLte\AdminLteServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
         ZanySoft\Zip\ZipServiceProvider::class,
+        PeterColes\Languages\LanguagesServiceProvider::class,
     ],
 
     /*
@@ -241,7 +242,7 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-
+        'Languages' => PeterColes\Languages\LanguagesFacade::class,
     ],
 
 ];

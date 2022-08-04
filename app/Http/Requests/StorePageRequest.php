@@ -41,8 +41,8 @@ class StorePageRequest extends FormRequest
 //                Rule::unique('seo', 'alias')
 //                    ->ignore( optional($this->page)->seo, 'alias'),
             ],
-            'seo.*.meta_keywords' => 'required|string|max:255',
-            'seo.*.meta_description' => 'required|string|max:255',
+            'seo.*.meta_keywords' => 'required|string|max:1000',
+            'seo.*.meta_description' => 'required|string|max:1000',
             'seo.*.thumbnail' => 'nullable|mimes:jpeg,bmp,png'
         ];
     }

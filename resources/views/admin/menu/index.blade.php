@@ -221,3 +221,7 @@
     <script src="{{ asset('/js/menu.js') }}"></script>
     {{--    <script src="{{ asset('/js/form.js') }}"></script>--}}
 @endsection
+
+@section('adminlte_css')
+    <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
+@endsection

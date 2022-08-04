@@ -153,3 +153,75 @@ Stack trace:
 [23-Feb-2022 18:30:50 UTC] PHP Warning:  include(/home/fronten8/mockla.front-end-dev.com.ua/vendor/composer/../laravel/framework/src/Illuminate/Macroable/Traits/Macroable.php): failed to open stream: No such file or directory in /home/fronten8/mockla.front-end-dev.com.ua/vendor/composer/ClassLoader.php on line 444
 [23-Feb-2022 18:30:50 UTC] PHP Warning:  include(): Failed opening '/home/fronten8/mockla.front-end-dev.com.ua/vendor/composer/../laravel/framework/src/Illuminate/Macroable/Traits/Macroable.php' for inclusion (include_path='.:/opt/alt/php74/usr/share/pear') in /home/fronten8/mockla.front-end-dev.com.ua/vendor/composer/ClassLoader.php on line 444
 [23-Feb-2022 18:30:50 UTC] PHP Fatal error:  Trait 'Illuminate\Support\Traits\Macroable' not found in /home/fronten8/mockla.front-end-dev.com.ua/vendor/laravel/framework/src/Illuminate/Collections/Arr.php on line 9
+[19-Jul-2022 16:59:29 UTC] PHP Fatal error:  Uncaught RuntimeException: A facade root has not been set. in /home/fronten8/product.front-end-dev.com.ua/vendor/laravel/framework/src/Illuminate/Support/Facades/Facade.php:258
+Stack trace:
+#0 /home/fronten8/product.front-end-dev.com.ua/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/RegisterErrorViewPaths.php(18): Illuminate\Support\Facades\Facade::__callStatic('replaceNamespac...', Array)
+#1 /home/fronten8/product.front-end-dev.com.ua/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(598): Illuminate\Foundation\Exceptions\RegisterErrorViewPaths->__invoke()
+#2 /home/fronten8/product.front-end-dev.com.ua/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(579): Illuminate\Foundation\Exceptions\Handler->registerErrorViewPaths()
+#3 /home/fronten8/product.front-end-dev.com.ua/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(490): Illuminate\Foundation\Exceptions\Handler->renderHttpException(Object(Symfony\Component\HttpKernel\Ex in /home/fronten8/product.front-end-dev.com.ua/vendor/laravel/framework/src/Illuminate/Support/Facades/Facade.php on line 258
+[20-Jul-2022 17:04:11 UTC] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in /home/fronten8/product.front-end-dev.com.ua/vendor/symfony/polyfill-mbstring/Mbstring.php on line 491
+[20-Jul-2022 17:05:14 UTC] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in /home/fronten8/product.front-end-dev.com.ua/vendor/symfony/polyfill-mbstring/Mbstring.php on line 635
+[20-Jul-2022 17:05:39 UTC] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in /home/fronten8/product.front-end-dev.com.ua/vendor/symfony/polyfill-mbstring/Mbstring.php on line 635
+[20-Jul-2022 17:05:46 UTC] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in /home/fronten8/product.front-end-dev.com.ua/vendor/symfony/polyfill-mbstring/Mbstring.php on line 635
+[20-Jul-2022 17:05:47 UTC] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in /home/fronten8/product.front-end-dev.com.ua/vendor/symfony/polyfill-mbstring/Mbstring.php on line 491
+[20-Jul-2022 17:05:52 UTC] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in /home/fronten8/product.front-end-dev.com.ua/vendor/symfony/polyfill-mbstring/Mbstring.php on line 635
+[20-Jul-2022 17:07:27 UTC] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in /home/fronten8/product.front-end-dev.com.ua/vendor/symfony/polyfill-mbstring/Mbstring.php on line 635
+[20-Jul-2022 17:08:12 UTC] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in /home/fronten8/product.front-end-dev.com.ua/vendor/symfony/polyfill-mbstring/Mbstring.php on line 635
+[20-Jul-2022 17:08:19 UTC] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in /home/fronten8/product.front-end-dev.com.ua/vendor/symfony/polyfill-mbstring/Mbstring.php on line 635
+[20-Jul-2022 17:08:43 UTC] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in /home/fronten8/product.front-end-dev.com.ua/vendor/symfony/polyfill-mbstring/Mbstring.php on line 635
+[21-Jul-2022 05:24:38 UTC] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in /home/fronten8/product.front-end-dev.com.ua/vendor/symfony/polyfill-mbstring/Mbstring.php on line 635
+[21-Jul-2022 05:25:58 UTC] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in /home/fronten8/product.front-end-dev.com.ua/vendor/symfony/polyfill-mbstring/Mbstring.php on line 635
+[21-Jul-2022 05:26:33 UTC] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in /home/fronten8/product.front-end-dev.com.ua/vendor/symfony/polyfill-mbstring/Mbstring.php on line 635
+[21-Jul-2022 06:07:18 UTC] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in /home/fronten8/product.front-end-dev.com.ua/vendor/symfony/polyfill-mbstring/Mbstring.php on line 635
+[21-Jul-2022 06:11:55 UTC] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in /home/fronten8/product.front-end-dev.com.ua/vendor/symfony/polyfill-mbstring/Mbstring.php on line 635
+[21-Jul-2022 08:02:53 UTC] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in /home/fronten8/product.front-end-dev.com.ua/vendor/symfony/polyfill-mbstring/Mbstring.php on line 635
+[21-Jul-2022 08:06:33 UTC] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in /home/fronten8/product.front-end-dev.com.ua/vendor/symfony/polyfill-mbstring/Mbstring.php on line 635
+[21-Jul-2022 08:07:27 UTC] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in /home/fronten8/product.front-end-dev.com.ua/vendor/symfony/polyfill-mbstring/Mbstring.php on line 635
+[21-Jul-2022 08:08:19 UTC] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in /home/fronten8/product.front-end-dev.com.ua/vendor/symfony/polyfill-mbstring/Mbstring.php on line 635
+[21-Jul-2022 08:08:44 UTC] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in /home/fronten8/product.front-end-dev.com.ua/vendor/symfony/polyfill-mbstring/Mbstring.php on line 635
+[21-Jul-2022 08:09:23 UTC] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in /home/fronten8/product.front-end-dev.com.ua/vendor/symfony/polyfill-mbstring/Mbstring.php on line 635
+[21-Jul-2022 08:15:48 UTC] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in /home/fronten8/product.front-end-dev.com.ua/vendor/symfony/polyfill-mbstring/Mbstring.php on line 635
+[21-Jul-2022 11:05:41 UTC] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in /home/fronten8/product.front-end-dev.com.ua/vendor/symfony/polyfill-mbstring/Mbstring.php on line 635
+[21-Jul-2022 11:06:27 UTC] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in /home/fronten8/product.front-end-dev.com.ua/vendor/symfony/polyfill-mbstring/Mbstring.php on line 635
+[21-Jul-2022 11:06:55 UTC] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in /home/fronten8/product.front-end-dev.com.ua/vendor/symfony/polyfill-mbstring/Mbstring.php on line 635
+[21-Jul-2022 11:06:57 UTC] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in /home/fronten8/product.front-end-dev.com.ua/vendor/symfony/polyfill-mbstring/Mbstring.php on line 635
+[21-Jul-2022 11:10:55 UTC] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in /home/fronten8/product.front-end-dev.com.ua/vendor/symfony/polyfill-mbstring/Mbstring.php on line 635
+[21-Jul-2022 11:11:04 UTC] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in /home/fronten8/product.front-end-dev.com.ua/vendor/symfony/polyfill-mbstring/Mbstring.php on line 635
+[22-Jul-2022 08:26:57 UTC] PHP Warning:  require(/home/fronten8/product.front-end-dev.com.ua/public/../vendor/autoload.php): Failed to open stream: No such file or directory in /home/fronten8/product.front-end-dev.com.ua/public/index.php on line 36
+[22-Jul-2022 08:26:57 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home/fronten8/product.front-end-dev.com.ua/public/../vendor/autoload.php' (include_path='.:/opt/alt/php80/usr/share/pear:/opt/alt/php80/usr/share/php:/usr/share/pear:/usr/share/php') in /home/fronten8/product.front-end-dev.com.ua/public/index.php:36
+Stack trace:
+#0 {main}
+  thrown in /home/fronten8/product.front-end-dev.com.ua/public/index.php on line 36
+[22-Jul-2022 08:27:05 UTC] PHP Warning:  require(/home/fronten8/product.front-end-dev.com.ua/vendor/composer/../../app/Models/helpers.php): Failed to open stream: No such file or directory in /home/fronten8/product.front-end-dev.com.ua/vendor/composer/autoload_real.php on line 78
+[22-Jul-2022 08:27:05 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home/fronten8/product.front-end-dev.com.ua/vendor/composer/../../app/Models/helpers.php' (include_path='.:/opt/alt/php80/usr/share/pear:/opt/alt/php80/usr/share/php:/usr/share/pear:/usr/share/php') in /home/fronten8/product.front-end-dev.com.ua/vendor/composer/autoload_real.php:78
+Stack trace:
+#0 /home/fronten8/product.front-end-dev.com.ua/vendor/composer/autoload_real.php(61): composerRequire6e89e6bb5a6334807506ffc702f36ff1()
+#1 /home/fronten8/product.front-end-dev.com.ua/vendor/autoload.php(7): ComposerAutoloaderInit6e89e6bb5a6334807506ffc702f36ff1::getLoader()
+#2 /home/fronten8/product.front-end-dev.com.ua/public/index.php(36): require('/home/fronten8/...')
+#3 {main}
+  thrown in /home/fronten8/product.front-end-dev.com.ua/vendor/composer/autoload_real.php on line 78
+[22-Jul-2022 08:27:06 UTC] PHP Warning:  require(/home/fronten8/product.front-end-dev.com.ua/vendor/composer/../../app/Models/helpers.php): Failed to open stream: No such file or directory in /home/fronten8/product.front-end-dev.com.ua/vendor/composer/autoload_real.php on line 78
+[22-Jul-2022 08:27:06 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home/fronten8/product.front-end-dev.com.ua/vendor/composer/../../app/Models/helpers.php' (include_path='.:/opt/alt/php80/usr/share/pear:/opt/alt/php80/usr/share/php:/usr/share/pear:/usr/share/php') in /home/fronten8/product.front-end-dev.com.ua/vendor/composer/autoload_real.php:78
+Stack trace:
+#0 /home/fronten8/product.front-end-dev.com.ua/vendor/composer/autoload_real.php(61): composerRequire6e89e6bb5a6334807506ffc702f36ff1()
+#1 /home/fronten8/product.front-end-dev.com.ua/vendor/autoload.php(7): ComposerAutoloaderInit6e89e6bb5a6334807506ffc702f36ff1::getLoader()
+#2 /home/fronten8/product.front-end-dev.com.ua/public/index.php(36): require('/home/fronten8/...')
+#3 {main}
+  thrown in /home/fronten8/product.front-end-dev.com.ua/vendor/composer/autoload_real.php on line 78
+[22-Jul-2022 08:27:07 UTC] PHP Warning:  require(/home/fronten8/product.front-end-dev.com.ua/vendor/composer/../../app/Models/helpers.php): Failed to open stream: No such file or directory in /home/fronten8/product.front-end-dev.com.ua/vendor/composer/autoload_real.php on line 78
+[22-Jul-2022 08:27:07 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home/fronten8/product.front-end-dev.com.ua/vendor/composer/../../app/Models/helpers.php' (include_path='.:/opt/alt/php80/usr/share/pear:/opt/alt/php80/usr/share/php:/usr/share/pear:/usr/share/php') in /home/fronten8/product.front-end-dev.com.ua/vendor/composer/autoload_real.php:78
+Stack trace:
+#0 /home/fronten8/product.front-end-dev.com.ua/vendor/composer/autoload_real.php(61): composerRequire6e89e6bb5a6334807506ffc702f36ff1()
+#1 /home/fronten8/product.front-end-dev.com.ua/vendor/autoload.php(7): ComposerAutoloaderInit6e89e6bb5a6334807506ffc702f36ff1::getLoader()
+#2 /home/fronten8/product.front-end-dev.com.ua/public/index.php(36): require('/home/fronten8/...')
+#3 {main}
+  thrown in /home/fronten8/product.front-end-dev.com.ua/vendor/composer/autoload_real.php on line 78
+[22-Jul-2022 08:27:10 UTC] PHP Warning:  require(/home/fronten8/product.front-end-dev.com.ua/vendor/composer/../../app/Models/helpers.php): Failed to open stream: No such file or directory in /home/fronten8/product.front-end-dev.com.ua/vendor/composer/autoload_real.php on line 78
+[22-Jul-2022 08:27:10 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home/fronten8/product.front-end-dev.com.ua/vendor/composer/../../app/Models/helpers.php' (include_path='.:/opt/alt/php80/usr/share/pear:/opt/alt/php80/usr/share/php:/usr/share/pear:/usr/share/php') in /home/fronten8/product.front-end-dev.com.ua/vendor/composer/autoload_real.php:78
+Stack trace:
+#0 /home/fronten8/product.front-end-dev.com.ua/vendor/composer/autoload_real.php(61): composerRequire6e89e6bb5a6334807506ffc702f36ff1()
+#1 /home/fronten8/product.front-end-dev.com.ua/vendor/autoload.php(7): ComposerAutoloaderInit6e89e6bb5a6334807506ffc702f36ff1::getLoader()
+#2 /home/fronten8/product.front-end-dev.com.ua/public/index.php(36): require('/home/fronten8/...')
+#3 {main}
+  thrown in /home/fronten8/product.front-end-dev.com.ua/vendor/composer/autoload_real.php on line 78
+[22-Jul-2022 09:05:57 UTC] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in /home/fronten8/product.front-end-dev.com.ua/vendor/symfony/polyfill-mbstring/Mbstring.php on line 635

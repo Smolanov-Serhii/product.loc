@@ -117,7 +117,7 @@
         <label for=""> {{ $attribute->name }} </label>
         <textarea
                 name="{{ $input_name }}"
-                class="editor"
+                class="editor 1"
                 id="content_{{ $iteration->id }}_{{ $attribute->id }}"
         >{!! $value !!}</textarea>
         {{--        <input--}}
@@ -258,3 +258,7 @@
         @break
     @endswitch
 </div>
+
+<script>
+    $(".editor").summernote();
+</script>

@@ -234,171 +234,65 @@ return [
             'url'  => 'admin/blog',
             'can'  => 'manage-blog',
         ],
-        ['header' => 'ЗАПИСИ'],
-        [
-            'text'        => 'Блог',
-//            'url'         => 'admin/modules',
-            'icon'        => '/img/admin/blog.svg',
-//            'label'       => 3,
-            'label_color' => 'success',
-            'submenu' => [
-                [
-                    'text' => 'Список Записей ',
-                    'url'  => '/admin/modules/items/list/36',
-                ],
-                [
-                    'text' => 'Рубрики записей',
-                    'url'  => '/admin/taxonomy/items/list/16',
-                ],
-            ],
-        ],
-        [
-            'text'        => 'Трансляции',
-//            'url'         => 'admin/modules',
-            'icon'        => '/img/admin/video.svg',
-//            'label'       => 3,
-            'label_color' => 'success',
-            'submenu' => [
-                [
-                    'text' => 'Список трансляций ',
-                    'url'  => '/admin/modules/items/list/33',
-                ],
-                [
-                    'text' => 'Тип трансляции',
-                    'url'  => '/admin/taxonomy/items/list/14',
-                ],
-            ],
-
-        ],
-        [
-            'text'        => 'Тренировки',
-//            'url'         => 'admin/modules',
-            'icon'        => '/img/admin/trenings.svg',
-//            'label'       => 3,
-            'label_color' => 'success',
-            'submenu' => [
-                [
-                    'text' => 'Список тренировок ',
-                    'url'  => '/admin/modules/items/list/31',
-                ],
-                [
-                    'text' => 'Группы тренировок',
-                    'url'  => '/admin/taxonomy/items/list/13',
-                ],
-            ],
-
-        ],
-        [
-            'text'        => 'Тренера',
-//            'url'         => 'admin/modules',
-            'icon'        => '/img/admin/treners.svg',
-//            'label'       => 3,
-            'label_color' => 'success',
-            'submenu' => [
-                [
-                    'text' => 'Список тренеров',
-                    'url'  => '/admin/modules/items/list/35',
-                ],
-                [
-                    'text' => 'Группы тренеров',
-                    'url'  => '/admin/taxonomy/items/list/15',
-                ],
-            ],
-
-        ],
-        [
-            'text'        => 'Клиенты',
-//            'url'         => 'admin/modules',
-            'icon'        => '/img/admin/clients.svg',
-//            'label'       => 3,
-            'label_color' => 'success',
-            'submenu' => [
-                [
-                    'text' => 'Список клиентов ',
-                    'url'  => '/admin/modules/items/list/32',
-                ],
-                [
-                    'text' => 'Отзывы ',
-                    'url'  => '/admin/modules/items/list/34',
-                ],
-                [
-                    'text' => 'Комментарии ',
-                    'url'  => '/admin/comment',
-                ],
-            ],
-
-        ],
-        [
-            'text'        => 'Подписки',
-//            'url'         => 'admin/modules',
-            'icon'        => '/img/admin/subscribe.svg',
-//            'label'       => 3,
-            'label_color' => 'success',
-            'submenu' => [
-                [
-                    'text' => 'Виды подписок',
-                    'url'  => '/admin/modules/items/list/37',
-                ],
-            ],
-
-        ],
-        [
-            'text'        => 'FAQ',
-//            'url'         => 'admin/modules',
-            'icon'        => '/img/admin/faq.svg',
-//            'label'       => 3,
-            'label_color' => 'success',
-            'submenu' => [
-                [
-                    'text' => 'Записи',
-                    'url'  => '/admin/modules/items/list/38',
-                ],
-            ],
-
-        ],
+//        ['header' => 'ЗАПИСИ'],
+//
+//        [
+//            'text'        => 'Города',
+//            'url'         => '/admin/modules/items/list/38',
+//            'icon'        => 'far fa-fw fa-file',
+////            'label'       => 3,
+//            'label_color' => 'success',
+////            'submenu' => [
+////                [
+////                    'text' => 'Записи',
+////                    'url'  => '/admin/modules/items/list/29',
+////                ],
+////            ],
+//
+//        ],
 
         ['header' => 'СТРУКТУРА'],
-        [
-            'text'        => 'Доступы',
-//            'url'         => 'admin/modules',
-            'icon'        => '/img/admin/secure.svg',
-//            'label'       => 3,
-            'label_color' => 'success',
-            'submenu' => [
-                [
-                    'text' => 'Пользователи',
-                    'url'  => '/admin/user',
-                ],
-                [
-                    'text' => 'Роли',
-                    'url'  => '/admin/role',
-                ],
-                [
-                    'text' => 'Группы прав',
-                    'url'  => '/admin/permission_group',
-                ],
-                [
-                    'text' => 'Права',
-                    'url'  => '/admin/permission',
-                ],
-            ]
-        ],
+//        [
+//            'text'        => 'Доступы',
+////            'url'         => 'admin/modules',
+//            'icon'        => '/img/admin/secure.svg',
+////            'label'       => 3,
+//            'label_color' => 'success',
+//            'submenu' => [
+//                [
+//                    'text' => 'Пользователи',
+//                    'url'  => '/admin/user',
+//                ],
+//                [
+//                    'text' => 'Роли',
+//                    'url'  => '/admin/role',
+//                ],
+//                [
+//                    'text' => 'Группы прав',
+//                    'url'  => '/admin/permission_group',
+//                ],
+//                [
+//                    'text' => 'Права',
+//                    'url'  => '/admin/permission',
+//                ],
+//            ]
+//        ],
         [
             'text'        => 'templates',
-//            'url'         => 'admin/block_templates',
-            'icon'        => '/img/admin/templates.svg',
+            'url'         => 'admin/block_templates',
+            'icon'        => 'far fa-fw fa-file',
 //            'label'       => 3,
             'label_color' => 'success',
-            'submenu' => [
-                [
-                    'text' => 'templates',
-                    'url'  => 'admin/block_templates',
-                ],
-                [
-                    'text' => 'Группы',
-                    'url'  => '/admin/block_template_groups',
-                ],
-            ]
+//            'submenu' => [
+//                [
+//                    'text' => 'templates',
+//                    'url'  => 'admin/block_templates',
+//                ],
+////                [
+////                    'text' => 'Группы',
+////                    'url'  => '/admin/block_template_groups',
+////                ],
+//            ]
         ],
         [
             'text'        => 'pages',
@@ -407,43 +301,43 @@ return [
 //            'label'       => 4,
             'label_color' => 'success',
         ],
+        [
+            'text'        => 'Меню',
+            'url'         => 'admin/menu',
+//            'icon'        => '/img/admin/menu.svg',
+            'icon'        => 'far fa-fw fa-address-card',
+//            'label'       => 3,
+            'label_color' => 'success',
+        ],
 //        [
-//            'text'        => 'Меню',
-//            'url'         => 'admin/menu',
-////            'icon'        => '/img/admin/menu.svg',
-//            'icon'        => 'far fa-fw fa-address-card',
+//            'text'        => 'Модули',
+//            'url'         => 'admin/modules',
+//            'icon'        => 'fa fa-tasks',
 ////            'label'       => 3,
 //            'label_color' => 'success',
 //        ],
-        [
-            'text'        => 'Модули',
-            'url'         => 'admin/modules',
-            'icon'        => 'fa fa-tasks',
-//            'label'       => 3,
-            'label_color' => 'success',
-        ],
-        [
-            'text'        => 'Таксономии',
-            'url'         => 'admin/taxonomy',
-            'icon'        => 'fa fa-bars',
-//            'label'       => 3,
-            'label_color' => 'success',
-        ],
-        [
-            'text'        => 'Виджеты',
-            'url'         => 'admin/widget',
-            'icon'        => 'fa fa-bars',
-//            'label'       => 3,
-            'label_color' => 'success',
-        ],
+//        [
+//            'text'        => 'Таксономии',
+//            'url'         => 'admin/taxonomy',
+//            'icon'        => 'fa fa-bars',
+////            'label'       => 3,
+//            'label_color' => 'success',
+//        ],
+//        [
+//            'text'        => 'Виджеты',
+//            'url'         => 'admin/widget',
+//            'icon'        => 'fa fa-bars',
+////            'label'       => 3,
+//            'label_color' => 'success',
+//        ],
         ['header' => 'ПАРАМЕТРЫ'],
-        [
-            'text'        => 'languages',
-            'url'         => 'admin/language',
-            'icon'        => 'fa fa-globe',
-//            'label'       => 3,
-            'label_color' => 'success',
-        ],
+//        [
+//            'text'        => 'languages',
+//            'url'         => 'admin/language',
+//            'icon'        => 'fa fa-globe',
+////            'label'       => 3,
+//            'label_color' => 'success',
+//        ],
         [
             'text'        => 'Настройки',
             'url'         => 'admin/variables',
@@ -451,13 +345,13 @@ return [
 //            'label'       => 3,
             'label_color' => 'success',
         ],
-        [
-            'text'        => 'Контакты',
-            'url'         => 'admin/contacts',
-            'icon'        => 'fas fa-cog',
-//            'label'       => 3,
-            'label_color' => 'success',
-        ],
+//        [
+//            'text'        => 'Контакты',
+//            'url'         => 'admin/contacts',
+//            'icon'        => 'fas fa-cog',
+////            'label'       => 3,
+//            'label_color' => 'success',
+//        ],
 
 //        ['header' => 'account_settings'],
 //        [
@@ -593,6 +487,7 @@ return [
                     'asset' => false,
                     'location' => '//cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css',
                 ],
+
             ],
         ],
         'Select2' => [

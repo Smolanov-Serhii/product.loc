@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\Page;
 use App\Models\Variable;
 use Closure;
 use Illuminate\Http\Request;
@@ -38,7 +39,10 @@ class SetVariables
                 });
         }
 
+        $main_page = Page::where('is_main', 1)->first();
+
         View::share([
+            'main_page' => $main_page,
             'var' => $var ?? [],
             'contacts' => $contacts ?? []
         ]);

@@ -154,3 +154,7 @@
     <script src="{{ asset('/js/load.js') }}"></script>
     <script src="{{ asset('/js/block_templates/sort.js') }}"></script>
 @endsection
+
+@section('adminlte_css')
+    <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
+@endsection

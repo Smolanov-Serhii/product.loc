@@ -218,11 +218,12 @@ Route::group([
 ], function () {
     Route::prefix('mail')->group(function () {
         Route::post('send', [App\Http\Controllers\MailController::class, 'send'])->name('mail.send');
+        Route::post('sendToForm', [App\Http\Controllers\MailController::class, 'sendToForm'])->name('mail.sendToForm');
     });
 
     foreach (\App\Models\Module::all() as $module) {
         Route::prefix($module->name)->group(function () use ($module) {
-            Route::get('{alias}', [App\Http\Controllers\ModuleItemController::class, 'item'])->name("{$module->name}.item");
+            Route::get('{alias}', [App\Http\Controllers\ModuleItemController::class, 'item'])->name("{$module->name}.item")->middleware(['locale', 'variables']);
         });
     }
 

@@ -48,12 +48,12 @@ class LocaleLinksWidget implements ContractWidget
                     if (!$seo) {
                         $fallbackLanguageId = Cache::get('languages')->get(config('app.fallback_locale'));
                         $seo = $seos->get($fallbackLanguageId);
-                        $links[$isoById->get($lang_id)]['link'] = "/{$seo->alias}";
+                        $links[$isoById->get($lang_id)]['link'] = ($seo->alias!='main')?"/{$seo->alias}":'/';
                     } else {
-                        $links[$isoById->get($lang_id)]['link'] = "/{$seo->alias}";
+                        $links[$isoById->get($lang_id)]['link'] = ($seo->alias!='main')?"/{$seo->alias}":'/';
                     }
                 } else {
-                    $links[$isoById->get($lang_id)]['link'] = "/{$isoById->get($lang_id)}/{$seo->alias}";
+                    $links[$isoById->get($lang_id)]['link'] = ($seo->alias!=='main')?"/{$isoById->get($lang_id)}/{$seo->alias}":"/{$isoById->get($lang_id)}/";
                 }
             } else {
                 $links[$isoById->get($lang_id)]['link'] = false;

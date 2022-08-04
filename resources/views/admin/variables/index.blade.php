@@ -55,7 +55,7 @@
                                         <img src="/uploads/variables/{{ $var->translate->value }}" alt="">
                                     @else
                                         @foreach($var->translations as $translation)
-                                            @if($translation->lang_id == 2)
+                                            @if($translation->lang_id == 3)
                                                     {{$translation->value}}
 {{--                                                {{ optional($var->translate)->value }}--}}
                                             @endif

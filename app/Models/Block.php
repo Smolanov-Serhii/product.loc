@@ -120,17 +120,15 @@ class Block extends Model
             ->template
             ->attrs
             ->mapWithKeys(function ($attr) use ($contents) {
-//                dd($attr->id);
-//                dd($contents[$attr->id]->translations[0] ?? $attr);
-                $value = isset($contents[$attr->id])
-                    ? $contents[$attr->id]->mappedByLang()[Cache::get('languages')->get(App::getLocale())]
-                    : $attr;
-//                $value = $contents[$attr->id]->translations[0] ?? $attr;
-//                dd($contents);
-//                if(!$contents[$attr->id]) {
-//                    dd($contents[$attr->id]);
-//                }
-//                dd([$contents[$attr->id] => $value]);
+                $fallback_locale = Language::where('iso', config('app.fallback_locale'))->first()->id;
+                if (isset($contents[$attr->id])) {
+                    $value = $contents[$attr->id]->mappedByLang()[Cache::get('languages')->get(App::getLocale())]??$contents[$attr->id]->mappedByLang()[$fallback_locale];
+                    if (empty($value->value)) {
+                        $value = $contents[$attr->id]->mappedByLang()[$fallback_locale];
+                    }
+                } else {
+                    $value = $attr;
+                }
                 return [$attr->key => $value];
             });
     }

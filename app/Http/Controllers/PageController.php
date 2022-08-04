@@ -112,7 +112,7 @@ class PageController extends Controller
     public function edit(Page $page): View
     {
         $model = $page;
-        $pages = $this->pageRepository->tree();
+        $pages = $this->pageRepository->all($page->id);
 
         $languages = Language::enabled()->get();
         $aliases = ModelSeo::where('alias', '!=', optional($page->seo)->alias)->pluck('alias')->toArray();

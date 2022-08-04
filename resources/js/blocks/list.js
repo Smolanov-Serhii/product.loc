@@ -58,14 +58,7 @@ $(document).on('click', '.edit-content', function (e) {
             $('#form_spiner').hide();
 
             $('#modal_body')[0].innerHTML = data.form;
-            $('.editor').each(function (element) {
-                var id = this.id;
-                $(`#${id}`).summernote(summernote_config);
-                $(`#${id}`)[0].value = $(`#${id}`).summernote('code');
-                $(`#${id}`).on("summernote.change", function (e) {   // callback as jquery custom event
-                    $(`#${id}`)[0].value = $(`#${id}`).summernote('code');
-                });
-            })
+
 
             $(".iterations").sortable({
                 containment: "parent",
@@ -88,7 +81,15 @@ $(document).on('click', '.edit-content', function (e) {
                     }
                 },
             });
-            $(".iterations").disableSelection();
+            // $(".iterations").disableSelection();
+            $('.editor').each(function (element) {
+                var id = this.id;
+                $(`#${id}`).summernote(summernote_config);
+                $(`#${id}`)[0].value = $(`#${id}`).summernote('code');
+                $(`#${id}`).on("summernote.change", function (e) {   // callback as jquery custom event
+                    $(`#${id}`)[0].value = $(`#${id}`).summernote('code');
+                });
+            })
             // $(".iterations").sortable({
             //     items: "> div",
             //     tolerance: "pointer",

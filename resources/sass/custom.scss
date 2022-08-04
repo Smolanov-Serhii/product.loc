@@ -1,0 +1,232 @@
+#hero {
+  padding-top: 14rem;
+  padding-bottom: 4rem;
+  min-height: auto;
+}
+#hero::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 80%;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(0, 0, 0, 0));
+  top: 0;
+  left: 0;
+}
+#hero h1 {
+  font-weight: bold;
+}
+#hero .TVMainForm {
+  background-color: transparent;
+  padding: 0;
+}
+.TVSearchButton {
+  background-color: #ffaa00;
+  color: #000;
+}
+.card .item {
+}
+#ts_sale_result {
+  background-color: #fff;
+  display: inline-block;
+  padding: 2rem;
+  border-radius: 5px;
+}
+
+
+.social {
+  margin-top: 1rem;
+}
+.social .soc svg {
+  fill: #fff;
+}
+.mobile .contacts  {
+  border-bottom: 2px solid var(--gray);
+  padding-bottom: 1rem;
+}
+.mobile .contacts .phone-content {
+  font-size: 1.25rem;
+}
+.mobile .contacts .link {
+  color: var(--color);
+  border-bottom: 1px dashed var(--color);
+}
+.mobile .social {
+  justify-content: center;
+}
+.mobile .social .soc svg {
+  fill: var(--color);
+}
+
+
+
+
+/*
+Ширины экрана
+-- xs	320-499		Смартфоны
+-- sm	500-769		Фаблеты
+-- md	770-1023	Планшеты
+-- ml	1024-1149	Нетбуки
+-- lg	1150-1399	Ноутбуки
+-- xl	1400		Декстопы
+*/
+
+/*
+==============================
+	xl 1535 - Декстопы
+==============================
+*/
+@media (max-width: 1535px) {
+}
+
+
+/*
+==============================
+	lg 1399 - Ноутбуки
+==============================
+*/
+@media (max-width: 1399px) {
+
+}
+
+
+/*
+==============================
+	lg 1299 - Ноутбуки
+==============================
+*/
+@media (max-width: 1299px) {
+  #header {
+    font-size: 0.9rem;
+  }
+  #header .content .social-col {
+    display: none;
+  }
+  #hero {
+  }
+  .form-wrap .form-head {
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+}
+
+
+/*
+==============================
+	ml 1150 - Нетбуки
+==============================
+*/
+@media (max-width: 1149px) {
+  .adress {
+    flex: 1;
+  }
+  .form-wrap .form-head {
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+  #manager h2 {
+    font-size: 2rem;
+  }
+}
+
+
+/*
+==============================
+	md 1023 - Планшеты
+==============================
+*/
+@media (max-width: 1023px) {
+  h1 {
+    font-size: 2.5rem;
+  }
+  #header .content .contacts {
+    flex: 0 0 13rem;
+    text-align: right;
+  }
+  #header .content .adress {
+    display: none;
+  }
+  #header .content .city {
+    flex: 0 0 12rem;
+    padding-left: 2rem;
+  }
+  #header .contacts svg {
+    display: none;
+  }
+  #menu {
+    display: none;
+  }
+  #hero {
+    padding-top: 7rem;
+    padding-bottom: 1rem;
+  }
+  #hero .header p {
+    margin: -0.5rem 0 1rem;
+  }
+}
+
+
+/*
+==============================
+	sm 767 - Фаблеты
+==============================
+*/
+@media (max-width: 767px) {
+  h1 {
+    font-size: 2.5rem;
+  }
+  #header .content .contacts {
+    display: none;
+  }
+
+}
+
+
+/*
+==============================
+	xs 499 - Смартфоны
+==============================
+*/
+@media (max-width: 499px) {
+  #header .mainrow {
+    display: block;
+  }
+  #header .content {
+    margin-left: 0;
+  }
+  #header .content .city {
+    padding-left: 1rem;
+    flex: 0 0 100%;
+    margin-top: 1rem;
+  }
+  #header .content .city br{
+    display: none;
+  }
+  #hero {
+    padding-top: 9rem;
+    padding-bottom: 4rem;
+  }
+  .header p, .subheader, pre {
+    font-size: 1.125rem;
+  }
+  .content p, .content li {
+    font-size: 1rem;
+  }
+  .btn {
+    font-size: 1rem;
+  }
+  .mobile-icon {
+    top: 20px;
+  }
+}
+
+
+/*
+==============================
+	xs 359 - Смартфоны
+==============================
+*/
+@media (max-width: 359px) {
+  html {
+    font-size: 15px;
+  }
+}

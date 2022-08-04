@@ -32,13 +32,19 @@ mix.sass('resources/sass/admin.scss', 'public/css/')
 ;
 
 mix.combine([
-    'resources/js/jquery-3.5.1.js',
-    'resources/js/swiper-bundle.js',
-    'resources/js/aos.js',
-    'resources/js/jquery.selectric.js',
-    // 'resources/js/fresco.min.js',
-    'resources/js/jquery.nested.js',
+    // 'resources/js/jquery-3.5.1.js',
+    'resources/js/jquery-ui.js',
     'resources/js/scripts.js',
+    'resources/js/slick.js',
+    // 'resources/js/fresco.min.js',
+    // 'resources/js/dle_js.js',
+    // 'resources/js/api1.js',
+    'resources/js/base.min.js',
+    'resources/js/validate.min.js',
+    'resources/js/front-page.js',
+    'resources/js/custom.js',
+    'resources/js/aos.js',
+    'resources/js/custom2.js',
 ], 'public/js/common.js');
 
 mix.minify('public/js/common.js');

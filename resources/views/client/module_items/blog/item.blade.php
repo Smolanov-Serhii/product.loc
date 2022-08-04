@@ -43,7 +43,7 @@ $properties = $module_item->props->mapWithKeys(function ($prop) {
                             </h1>
                         </div>
                         <div class="blog-sin__desc">
-                            {!! $properties['content'] !!}
+                            {!! $properties['content'] ?? ''!!}
                         </div>
                     </div>
                     @include('client.includes.comments.items', ['commentable' => $module_item])
